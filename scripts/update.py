@@ -135,8 +135,10 @@ def verify_package(verify_script: str, latest_version: str) -> bool:
 
     try:
         docker_cmd = [
+            "sudo",
             "docker",
             "run",
+            "--privileged",
             "-v",
             f"{verify_script}:{verify_script}",
             "--rm",
