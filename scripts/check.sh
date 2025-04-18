@@ -16,10 +16,10 @@ git clone https://gitee.com/openeuler/conda-ecopkgs.git
 cd conda-ecopkgs
 
 pip3 install click requests
+
 sudo -E python3 scripts/update.py \
     -pr ${prid} \
     -sr ${repo} \
-    -su ${scodeurl} \
     -br ${branch}
 
 rm -rf conda-ecopkgs

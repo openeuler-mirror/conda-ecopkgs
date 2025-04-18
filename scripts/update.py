@@ -16,7 +16,7 @@ CONDA_IMAGE_REPO = "baibgj/conda"
 CONDA_IMAGE_TAG = "latest"
 
 REPOSITORY_REQUEST_URL = (
-    "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls/"
+    "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
 )
 
 
@@ -259,7 +259,8 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
         return False
 
 
-def pull_source_code(source_code_url, source_branch, work_dir):
+def pull_source_code(pr_id, source_branch, work_dir):
+    source_code_url = get_source_code(pr_id=pr_id)
     command = ['git', 'clone', '-b',
                source_branch,
                source_code_url,
@@ -285,7 +286,7 @@ def _request(url: str):
 
 def get_change_files(pr_id) -> List[str]:
     change_files = []
-    url = REPOSITORY_REQUEST_URL + f"{pr_id}/files?access_token=" + \
+    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}/files?access_token=" + \
           os.environ["GITEE_API_TOKEN"]
     response = _request(url=url)
     # check status code
@@ -302,6 +303,30 @@ def get_change_files(pr_id) -> List[str]:
     return change_files
 
 
+def get_source_code(pr_id) -> str:
+    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}"
+
+    response = _request(url=url)
+    if response.status_code != 200:
+        raise RuntimeError(
+            f"Request failed with status code:",
+            response.status_code
+        )
+
+    # Get the user repository info
+    pr_data = response.json()
+    head_repo = pr_data.get("head", {}).get("repo", {})
+    if not head_repo:
+        raise RuntimeError(f"User repo info not found,"
+                           f"pull request: {url}.")
+
+    # Get the source code url
+    source_code_url = head_repo.get("html_url")
+    if not source_code_url:
+        raise RuntimeError(f"Source code url not found,"
+                           f"pull request: {url}.")
+    return source_code_url
+
 def init_parser():
     new_parser = argparse.ArgumentParser(
         prog="update.py",
@@ -311,9 +336,6 @@ def init_parser():
     new_parser.add_argument("-pr", "--prid", help="Pull Request ID")
     new_parser.add_argument(
         "-sr", "--source_repo", help="source repo of the PR"
-    )
-    new_parser.add_argument(
-        "-su", "--source_code_url", help="source code url of the PR"
     )
     new_parser.add_argument(
         "-br", "--source_branch", help="source branch of the PR"
@@ -334,7 +356,6 @@ if __name__ == "__main__":
     if (
             not args.prid
             or not args.source_repo
-            or not args.source_code_url
             or not args.source_branch
     ):
         parser.print_help()
@@ -347,7 +368,7 @@ if __name__ == "__main__":
     os.makedirs(work_dir)
 
     if pull_source_code(
-            args.source_code_url,
+            args.prid,
             args.source_branch,
             work_dir
     ):
