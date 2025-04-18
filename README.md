@@ -1,37 +1,24 @@
 # conda-ecopkgs
 
-#### 介绍
-This repo aims to manage the conda packages which support openEuler.
+## 介绍
 
-#### 软件架构
-软件架构说明
+这里发布在openEuler上安装验证通过的conda软件包，包括软件包的相关信息和软件包的安装验证脚本。
 
+## 目录
+### packages/
+存放每个conda软件包的验证信息
+```
+# packages/
+relion/
+	|── package.yml                # 保存软件包基本信息，包括软件包名、描述、使用方法
+	|── supported-versions.yml     # 当前软件包在openEuler不同版本上的支持验证情况
+	└── verify.sh                  # 当前软件包的验证脚本
+```
 
-#### 安装教程
+### scripts/
+存放用于本仓库CI验证的脚本文件
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 贡献指南
+1. （新增软件包需求）开发者可根据需求在本仓库`packages/`目录下增加新的conda包（按照上述目录结构和文件要求增加内容），CI会根据新增软件包提供的脚本执行验证，验证通过后由maintainer合入
+2. （新增支持版本）开发者可在`packages/{pkg}/supported_version.yml`文件中新增支持的软件版本，待CI验证后由maintainer合入
+3. 暂不支持删除已验证过的版本支持信息。
