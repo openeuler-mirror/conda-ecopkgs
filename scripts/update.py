@@ -13,10 +13,10 @@ from typing import List, Any, Union
 DEFAULT_WORKDIR = "/tmp/ecopkgs/verify/"
 
 CONDA_IMAGE_REPO = "baibgj/conda"
-CONDA_IMAGE_TAG = "oe2403sp1"
+CONDA_IMAGE_TAG = "latest"
 
 REPOSITORY_REQUEST_URL = (
-    "https://gitee.com/api/v5/repos/baigj/conda-ecopkgs/pulls/"
+    "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls/"
 )
 
 
@@ -225,6 +225,11 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
                 continue
 
             versions_file = os.path.join(work_dir, change_file)
+
+            # file deleted
+            if not os.path.exists(versions_file):
+                continue
+
             package_root = os.path.dirname(versions_file)
             verify_script = os.path.join(package_root, "verify.sh")
 
