@@ -1,0 +1,24 @@
+name: openmpi
+category: others
+channel: conda-forge
+description: An open source Message Passing Interface implementation.
+license: BSD-3-Clause
+homepage: https://www.open-mpi.org/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n openmpi
+    conda activate openmpi
+    ```
+    
+  - 安装软件包
+    ```
+    conda install openmpi
+    ```

@@ -1,0 +1,24 @@
+name: zlib
+category: others
+channel: conda-forge
+description: Massively spiffy yet delicately unobtrusive compression library
+license: Zlib
+homepage: http://zlib.net/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n zlib
+    conda activate zlib
+    ```
+    
+  - 安装软件包
+    ```
+    conda install zlib
+    ```

@@ -1,0 +1,24 @@
+name: zlib-ng
+category: others
+channel: conda-forge
+description: zlib data compression library for the next generation systems
+license: Zlib
+homepage: https://github.com/zlib-ng/zlib-ng
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n zlib
+    conda activate zlib
+    ```
+    
+  - 安装软件包
+    ```
+    conda install zlib-ng
+    ```
