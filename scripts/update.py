@@ -21,7 +21,7 @@ REPOSITORY_REQUEST_URL = (
 
 # transform openEuler version into specifical format
 # e.g., 22.03-lts-sp3 -> oe2203sp3
-def _transform_version_format(os_version: str):
+def transform_version_format(os_version: str):
     lower_version = os_version.lower()
     # check if os_version has substring "-sp"
     if "-sp" in lower_version:
@@ -71,20 +71,11 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
             if (not change_file.endswith("support-versions.yml")
                     or len(change_file.split("/")) != 3):
                 continue
-
-            versions_file = os.path.join(work_dir, change_file)
-            if not os.path.exists(versions_file):
-                continue
-
-            package_root = os.path.dirname(versions_file)
-            verify_script = os.path.join(package_root, "verify.sh")
-
-            if verify_packages(versions_file, verify_script):
+            if verify_packages(work_dir, change_file):
                 continue
             else:
                 click.echo(click.style(
-                    f"Failed to verify support versions: {versions_file},"
-                    f"verify script: {verify_script}",
+                    f"Failed to verify versions: {change_file}",
                     fg="red"
                 ))
                 return False
@@ -97,19 +88,27 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
         return False
 
 
-def verify_packages(versions_file: str, verify_script: str) -> bool:
+def verify_packages(work_dir: str, change_file: str) -> bool:
     """
     Parse support-versions.yaml file and return the
     latest openEuler and app version.
 
     Args:
-        versions_file: Path to support-versions.yaml file
-        verify_script: Path to verify.sh file
+        work_dir: CI working directory path
+        change_file: Path to support-versions.yaml file
 
     Returns:
         Tuple of (latest openEuler version, latest app version)
         or None if error
     """
+    versions_file = os.path.join(work_dir, change_file)
+    if not os.path.exists(versions_file):
+        click.echo(click.style(
+            f"Supported-versions file not found: {versions_file}",
+            fg="red"
+        ))
+        return False
+
     with open(versions_file, 'r') as f:
         data = yaml.safe_load(f)
 
@@ -120,27 +119,47 @@ def verify_packages(versions_file: str, verify_script: str) -> bool:
         ))
         return False
 
+    package = change_file.split("/")[1]
+
     for os_version in data.keys():
         for app_version in data[os_version]:
-            if run_verify_command(verify_script, os_version, app_version):
+            if run_verify_command(work_dir, package, os_version, app_version):
                 continue
             return False
 
     return True
 
 
-def run_verify_command(verify_script: str, os_version, app_version: str) -> bool:
+def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
+    package_info_file = f"{work_dir}/packages/{package}/package.yml"
+    try:
+        with open(package_info_file, 'r') as f:
+            data = yaml.safe_load(f)
+            return data.get("channel"), data.get("dependency-channels")
+    except Exception as e:
+        click.echo(click.style(
+            f"Error parsing {package_info_file}",
+            fg="red"
+        ))
+        raise e
+
+
+def run_verify_command(work_dir, package, os_version, app_version: str) -> bool:
     """
     Find and execute verify.sh in the package directory
 
     Args:
-        verify_script: The shell script used to verify package
+        work_dir: CI working directory path
+        package: conda package directory
         os_version: latest os version
         app_version: latest package version
 
     Returns:
         True if execution succeeded, False otherwise
     """
+    verify_script = os.path.join(
+        work_dir, "scripts", "verify.sh"
+    )
     if not os.path.isfile(verify_script):
         click.echo(click.style(
             f"Install script not found {verify_script}",
@@ -148,30 +167,28 @@ def run_verify_command(verify_script: str, os_version, app_version: str) -> bool
         ))
         return False
 
-    os_suffix = _transform_version_format(os_version)
+    channel, dependencies = parse_package_info(work_dir, package)
+
+    os_suffix = transform_version_format(os_version)
     image_tag = f"{CONDA_IMAGE_VERSION}-{os_suffix}"
 
     docker_cmd = []
     try:
-        docker_cmd = [
-            "sudo",
-            "docker",
-            "run",
-            "--rm",
-            "--privileged",
-            "-v",
-            f"{verify_script}:{verify_script}",
-            f"{CONDA_IMAGE_REPO}:{image_tag}",
-            "bash",
-            "-x",
-            "--",
-            verify_script,
-            "-v",
-            app_version
-        ]
+        docker_cmd = ["sudo", "docker", "run", "--rm", "--privileged",
+                      "-v", f"{verify_script}:{verify_script}",
+                      f"{CONDA_IMAGE_REPO}:{image_tag}",
+                      "bash", "-x", "--", verify_script,
+                      "-p", package,
+                      "-c", channel,
+                      "-v", app_version
+                      ]
 
-        click.secho("🚀 Running Docker command:", fg="blue")
-        click.secho("    " + " ".join(docker_cmd), fg="cyan")
+        if dependencies:
+            docker_cmd.append("-d")
+            docker_cmd.extend(dependencies)
+
+        click.secho("Running docker command:", fg="blue")
+        click.secho(" ".join(docker_cmd), fg="cyan")
 
         result = subprocess.run(
             docker_cmd,
