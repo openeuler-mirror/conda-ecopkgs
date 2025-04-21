@@ -2,192 +2,35 @@ import argparse
 import click
 import json
 import os
-import re
 import requests
 import shutil
 import sys
 import subprocess
 import yaml
-from typing import List, Any, Union
+from typing import List, Any, Union, Tuple, Optional
 
 DEFAULT_WORKDIR = "/tmp/ecopkgs/verify/"
 
-CONDA_IMAGE_REPO = "baibgj/conda"
-CONDA_IMAGE_TAG = "latest"
+CONDA_IMAGE_REPO = "openeuler/conda"
+CONDA_IMAGE_VERSION = "25.1.1"
 
 REPOSITORY_REQUEST_URL = (
     "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
 )
 
 
-def convert_to_number(os_version: str) -> Union[float, None]:
-    """
-    Convert openEuler version string to a comparable float value for easy ordering.
+# transform openEuler version into specifical format
+# e.g., 22.03-lts-sp3 -> oe2203sp3
+def _transform_version_format(os_version: str):
+    lower_version = os_version.lower()
+    # check if os_version has substring "-sp"
+    if "-sp" in lower_version:
+        # delete "lts" in os_version
+        lower_version = lower_version.replace("lts", "")
+    # delete all "." and "-"
+    ret = lower_version.replace(".", "").replace("-", "")
 
-    Processing steps:
-    1. Remove 'openEuler-' prefix if present
-    2. Remove '-LTS' suffix if present
-    3. Remove '-SP' suffixes (e.g., '-SP1' becomes '1')
-    4. Remove all non-digit characters except dots
-
-    Examples:
-        "24.03-LTS" → 24.03
-        "24.03-LTS-SP1" → 24.031
-        "24.03" → 24.03
-        "24.03-LTS-SP2" → 24.032
-        "openEuler-24.03-LTS-SP2" → 24.032
-
-    Args:
-        os_version: The openEuler version string to convert
-
-    Returns:
-        Float representation of the version suitable for comparison
-        Returns none if conversion fails (invalid format)
-    """
-    version = (
-        os_version.replace("openEuler-", "")
-        .replace("-LTS", "")
-        .replace("-SP", "")
-    )
-    version = re.sub(r"[^\d.]", "", version)
-    try:
-        return float(version)
-    except ValueError:
-        click.echo(click.style(
-            f"Invalid version format {version}",
-            fg="red"
-        ))
-        return None
-
-
-def get_latest_version(versions_file: str) -> Union[Any, None]:
-    """
-    Parse versions_file.yml file and find latest openEuler and package versions
-
-    Args:
-        versions_file: Path to supprot-versions.yaml file
-
-    Returns:
-        Latest app version or None if not found
-    """
-    try:
-        with open(versions_file, 'r') as f:
-            data = yaml.safe_load(f)
-
-        if not data or not isinstance(data, dict):
-            click.echo(click.style(
-                f"Invalid YAML format in {versions_file}",
-                fg="red"
-            ))
-            return None
-
-        # keep string version and float version
-        os_map = {}
-        for os_version in data.keys():
-            version_num = convert_to_number(os_version)
-            if not version_num:
-                return None
-            os_map[os_version] = version_num
-
-        if not os_map:
-            click.echo(click.style(
-                f"No valid openEuler versions found in {versions_file}",
-                fg="red"
-            ))
-            return None
-
-        max_os = max(os_map.keys(), key=lambda x: os_map[x])
-        app_versions = data.get(max_os, [])
-        if not app_versions:
-            click.echo(click.style(
-                f"Error: No app versions found for {max_os}",
-                fg="red"
-            ))
-            return None
-
-        return app_versions[-1]
-    except Exception as e:
-        click.echo(click.style(
-            f"Unexpected error processing {versions_file}: {e}",
-            fg="red"
-        ))
-        return None
-
-
-def verify_package(verify_script: str, latest_version: str) -> bool:
-    """
-    Find and execute verify.sh in the package directory
-
-    Args:
-        verify_script: The shell script used to verify package
-        latest_version: latest conda package version
-
-    Returns:
-        True if execution succeeded, False otherwise
-    """
-    docker_cmd = []
-    if not os.path.isfile(verify_script):
-        click.echo(click.style(
-            f"Install script not found {verify_script}",
-            fg="red"
-        ))
-        return False
-
-    try:
-        docker_cmd = [
-            "sudo",
-            "docker",
-            "run",
-            "--privileged",
-            "-v",
-            f"{verify_script}:{verify_script}",
-            "--rm",
-            f"{CONDA_IMAGE_REPO}:{CONDA_IMAGE_TAG}",
-            "bash",
-            "-x",
-            "--",
-            verify_script,
-            "-v",
-            latest_version
-        ]
-
-        result = subprocess.run(
-            docker_cmd,
-            check=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            encoding='utf-8'
-        )
-
-        click.echo(click.style(
-            f"Successfully executed verify.sh\nOutput: {result.stdout}",
-            fg="green"
-        ))
-        return True
-
-    except subprocess.CalledProcessError as e:
-        click.echo(click.style(
-            f"Install script failed (exit {e.returncode})\n"
-            f"Command: {' '.join(docker_cmd)}\n"
-            f"Error output: {e.stderr}",
-            fg="red"
-        ))
-        return False
-
-    except FileNotFoundError:
-        click.echo(click.style(
-            "Docker command not found. Is Docker installed and in PATH?",
-            fg="red"
-        ))
-        return False
-
-    except Exception as e:
-        click.echo(click.style(
-            f"Unexpected error: {str(e)}",
-            fg="red"
-        ))
-        return False
+    return f"oe{ret}"
 
 
 def verify_updates(pr_id: int, work_dir: str) -> bool:
@@ -222,36 +65,144 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
             ))
             return False
 
+        # file named support-versions.yml and path format is
+        # packages/{name}/support-versions.yml
         for change_file in change_files:
-            if not change_file.endswith("support-versions.yml"):
+            if (not change_file.endswith("support-versions.yml")
+                    or len(change_file.split("/")) != 3):
                 continue
 
             versions_file = os.path.join(work_dir, change_file)
-
-            # file deleted
             if not os.path.exists(versions_file):
                 continue
 
             package_root = os.path.dirname(versions_file)
             verify_script = os.path.join(package_root, "verify.sh")
 
-            latest_version = get_latest_version(versions_file)
-            if not latest_version:
+            if verify_packages(versions_file, verify_script):
+                continue
+            else:
                 click.echo(click.style(
-                    f"Failed to get version from {versions_file}",
+                    f"Failed to verify support versions: {versions_file},"
+                    f"verify script: {verify_script}",
                     fg="red"
                 ))
                 return False
-
-            if not verify_package(verify_script, latest_version):
-                click.echo(click.style(
-                    f"Failed to verify version "
-                    f"{latest_version} from {versions_file}",
-                    fg="red"
-                ))
-                return False
-
         return True
+    except Exception as e:
+        click.echo(click.style(
+            f"Unexpected error: {str(e)}",
+            fg="red"
+        ))
+        return False
+
+
+def verify_packages(versions_file: str, verify_script: str) -> bool:
+    """
+    Parse support-versions.yaml file and return the
+    latest openEuler and app version.
+
+    Args:
+        versions_file: Path to support-versions.yaml file
+        verify_script: Path to verify.sh file
+
+    Returns:
+        Tuple of (latest openEuler version, latest app version)
+        or None if error
+    """
+    with open(versions_file, 'r') as f:
+        data = yaml.safe_load(f)
+
+    if not data or not isinstance(data, dict):
+        click.echo(click.style(
+            f"Invalid YAML format in {versions_file}",
+            fg="red"
+        ))
+        return False
+
+    for os_version in data.keys():
+        for app_version in data[os_version]:
+            if run_verify_command(verify_script, os_version, app_version):
+                continue
+            return False
+
+    return True
+
+
+def run_verify_command(verify_script: str, os_version, app_version: str) -> bool:
+    """
+    Find and execute verify.sh in the package directory
+
+    Args:
+        verify_script: The shell script used to verify package
+        os_version: latest os version
+        app_version: latest package version
+
+    Returns:
+        True if execution succeeded, False otherwise
+    """
+    if not os.path.isfile(verify_script):
+        click.echo(click.style(
+            f"Install script not found {verify_script}",
+            fg="red"
+        ))
+        return False
+
+    os_suffix = _transform_version_format(os_version)
+    image_tag = f"{CONDA_IMAGE_VERSION}-{os_suffix}"
+
+    docker_cmd = []
+    try:
+        docker_cmd = [
+            "sudo",
+            "docker",
+            "run",
+            "--rm",
+            "--privileged",
+            "-v",
+            f"{verify_script}:{verify_script}",
+            f"{CONDA_IMAGE_REPO}:{image_tag}",
+            "bash",
+            "-x",
+            "--",
+            verify_script,
+            "-v",
+            app_version
+        ]
+
+        click.secho("🚀 Running Docker command:", fg="blue")
+        click.secho("    " + " ".join(docker_cmd), fg="cyan")
+
+        result = subprocess.run(
+            docker_cmd,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding='utf-8'
+        )
+
+        click.echo(click.style(
+            f"Successfully executed verify.sh\nOutput: {result.stdout}",
+            fg="green"
+        ))
+        return True
+
+    except subprocess.CalledProcessError as e:
+        click.echo(click.style(
+            f"Install script failed (exit {e.returncode})\n"
+            f"Command: {' '.join(docker_cmd)}\n"
+            f"Error output: {e.stderr}",
+            fg="red"
+        ))
+        return False
+
+    except FileNotFoundError:
+        click.echo(click.style(
+            "Docker command not found. Is Docker installed and in PATH?",
+            fg="red"
+        ))
+        return False
 
     except Exception as e:
         click.echo(click.style(
@@ -310,10 +261,8 @@ def get_source_code(pr_id) -> str:
 
     response = _request(url=url)
     if response.status_code != 200:
-        raise RuntimeError(
-            f"Request failed with status code:",
-            response.status_code
-        )
+        raise RuntimeError(f"Request failed with status code:",
+                           response.status_code)
 
     # Get the user repository info
     pr_data = response.json()
@@ -328,6 +277,7 @@ def get_source_code(pr_id) -> str:
         raise RuntimeError(f"Source code url not found,"
                            f"pull request: {url}.")
     return source_code_url
+
 
 def init_parser():
     new_parser = argparse.ArgumentParser(
@@ -378,3 +328,5 @@ if __name__ == "__main__":
 
     if not verify_updates(args.prid, work_dir):
         sys.exit(1)
+
+    clear_all(work_dir)
