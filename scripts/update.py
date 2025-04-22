@@ -2,6 +2,7 @@ import argparse
 import click
 import json
 import os
+import platform
 import requests
 import shutil
 import sys
@@ -14,10 +15,16 @@ DEFAULT_WORKDIR = "/tmp/ecopkgs/verify/"
 CONDA_IMAGE_REPO = "openeuler/conda"
 CONDA_IMAGE_VERSION = "25.1.1"
 
+SUPPORTED_VERSIONS_FILE = "supported-versions.yml"
+PACKAGE_FILE = "package.yml"
+
 REPOSITORY_REQUEST_URL = (
     "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
 )
 
+VERIFY_SCRIPT_URL = (
+    "https://gitee.com/openeuler/conda-ecopkgs/raw/master/scripts/verify.sh"
+)
 
 # transform openEuler version into specifical format
 # e.g., 22.03-lts-sp3 -> oe2203sp3
@@ -36,7 +43,7 @@ def transform_version_format(os_version: str):
 def verify_updates(pr_id: int, work_dir: str) -> bool:
     """
     Verify package updates by processing changed
-    support_versions.yml files and running verify scripts.
+    supported-versions.yml files and running verify scripts.
 
     Args:
         pr_id: Pull Request ID to identify changed files
@@ -65,10 +72,10 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
             ))
             return False
 
-        # file named support-versions.yml and path format is
-        # packages/{name}/support-versions.yml
+        # file named supported-versions.yml and path format is
+        # packages/{name}/supported-versions.yml
         for change_file in change_files:
-            if (not change_file.endswith("support-versions.yml")
+            if (not change_file.endswith(SUPPORTED_VERSIONS_FILE)
                     or len(change_file.split("/")) != 3):
                 continue
             if verify_packages(work_dir, change_file):
@@ -90,12 +97,12 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
 
 def verify_packages(work_dir: str, change_file: str) -> bool:
     """
-    Parse support-versions.yaml file and return the
+    Parse supported-versions.yml file and return the
     latest openEuler and app version.
 
     Args:
         work_dir: CI working directory path
-        change_file: Path to support-versions.yaml file
+        change_file: Path to supported-versions.yml file
 
     Returns:
         Tuple of (latest openEuler version, latest app version)
@@ -120,18 +127,25 @@ def verify_packages(work_dir: str, change_file: str) -> bool:
         return False
 
     package = change_file.split("/")[1]
-
+    machine_arch = platform.machine()
     for os_version in data.keys():
-        for app_version in data[os_version]:
-            if run_verify_command(work_dir, package, os_version, app_version):
-                continue
-            return False
+        supported_arches = data[os_version]
+        if not supported_arches:
+            continue
+        if machine_arch not in supported_arches:
+            continue
+        package_version = supported_arches[machine_arch]
+        if not package_version:
+            continue
+        if run_verify_command(work_dir, package, os_version, package_version):
+            continue
+        return False
 
     return True
 
 
 def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
-    package_info_file = f"{work_dir}/packages/{package}/package.yml"
+    package_info_file = f"{work_dir}/packages/{package}/{PACKAGE_FILE}"
     try:
         with open(package_info_file, 'r') as f:
             data = yaml.safe_load(f)
@@ -144,22 +158,21 @@ def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
         raise e
 
 
-def run_verify_command(work_dir, package, os_version, app_version: str) -> bool:
+def run_verify_command(work_dir, package, os_version, package_version: str) -> bool:
     """
     Find and execute verify.sh in the package directory
 
     Args:
         work_dir: CI working directory path
         package: conda package directory
-        os_version: latest os version
-        app_version: latest package version
+        os_version: os version
+        package_version: package version
 
     Returns:
         True if execution succeeded, False otherwise
     """
-    verify_script = os.path.join(
-        work_dir, "scripts", "verify.sh"
-    )
+    verify_script = os.path.join(work_dir, "verify.sh")
+
     if not os.path.isfile(verify_script):
         click.echo(click.style(
             f"Install script not found {verify_script}",
@@ -180,7 +193,7 @@ def run_verify_command(work_dir, package, os_version, app_version: str) -> bool:
                       "bash", "-x", "--", verify_script,
                       "-p", package,
                       "-c", channel,
-                      "-v", app_version
+                      "-v", package_version
                       ]
 
         if dependencies:
@@ -274,12 +287,13 @@ def get_change_files(pr_id) -> List[str]:
 
 
 def get_source_code(pr_id) -> str:
-    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}"
+    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}?access_token=" + \
+          os.environ["GITEE_API_TOKEN"]
 
     response = _request(url=url)
     if response.status_code != 200:
         raise RuntimeError(f"Request failed with status code:",
-                           response.status_code)
+                           f"{response.status_code}, url: {url}")
 
     # Get the user repository info
     pr_data = response.json()
@@ -294,6 +308,25 @@ def get_source_code(pr_id) -> str:
         raise RuntimeError(f"Source code url not found,"
                            f"pull request: {url}.")
     return source_code_url
+
+
+def download_verify_script(work_dir: str) -> int:
+    url = f"{VERIFY_SCRIPT_URL}?access_token=" + \
+          os.environ["GITEE_API_TOKEN"]
+
+    save_path = os.path.join(work_dir, "verify.sh")
+
+    response = _request(url)
+    if response.status_code == 200:
+        with open(save_path, "wb") as f:
+            f.write(response.content)
+        return 0
+    click.echo(click.style(
+        f"Failed to download verify script,"
+        f"status code: {response.status_code}, url: {url}",
+        fg="red"
+    ))
+    return 1
 
 
 def init_parser():
@@ -341,6 +374,9 @@ if __name__ == "__main__":
             args.source_branch,
             work_dir
     ):
+        sys.exit(1)
+
+    if download_verify_script(work_dir):
         sys.exit(1)
 
     if not verify_updates(args.prid, work_dir):
