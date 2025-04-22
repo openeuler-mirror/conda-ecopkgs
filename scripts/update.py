@@ -128,18 +128,30 @@ def verify_packages(work_dir: str, change_file: str) -> bool:
 
     package = change_file.split("/")[1]
     machine_arch = platform.machine()
-    for os_version in data.keys():
-        supported_arches = data[os_version]
+
+    for os_version, supported_arches in data.items():
         if not supported_arches:
             continue
-        if machine_arch not in supported_arches:
-            continue
-        package_version = supported_arches[machine_arch]
-        if not package_version:
-            continue
-        if run_verify_command(work_dir, package, os_version, package_version):
-            continue
-        return False
+
+        noarch_version = supported_arches.get("noarch")
+        if noarch_version:
+            if not run_verify_command(
+                    work_dir,
+                    package,
+                    os_version,
+                    noarch_version
+            ):
+                return False
+
+        arch_version = supported_arches.get(machine_arch)
+        if arch_version:
+            if not run_verify_command(
+                    work_dir,
+                    package,
+                    os_version,
+                    arch_version
+            ):
+                return False
 
     return True
 
