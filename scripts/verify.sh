@@ -65,6 +65,8 @@ done
 [[ -z "$PACKAGE" || -z "$CHANNEL" ]] && { echo "Error: -p and -c are required" >&2; show_help; }
 
 source /usr/local/miniconda/etc/profile.d/conda.sh
+conda create -y -n $PACKAGE
+conda activate $PACKAGE
 
 for channel in "${DEPENDENCY_CHANNELS[@]}"; do
   echo "Adding dependency channel: $channel"
@@ -72,8 +74,6 @@ for channel in "${DEPENDENCY_CHANNELS[@]}"; do
     echo "Warning: Failed to add channel $channel" >&2
   }
 done
-
-conda update -y -n base conda
 
 INSTALL_SPEC="${PACKAGE}"
 [[ -n "$VERSION" ]] && INSTALL_SPEC="${PACKAGE}=${VERSION}"
