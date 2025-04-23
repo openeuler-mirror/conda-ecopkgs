@@ -1,0 +1,24 @@
+name: lz4
+category: others
+channel: conda-forge
+description: LZ4 Bindings for Python
+license: BSD-3-Clause
+homepage: https://github.com/python-lz4/python-lz4
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n lz4
+    conda activate lz4
+    ```
+    
+  - 安装软件包
+    ```
+    conda install lz4
+    ```

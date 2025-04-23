@@ -1,0 +1,24 @@
+name: git
+category: others
+channel: conda-forge
+description: distributed version control system
+license: GPL-2.0-or-later and LGPL-2.1-or-later
+homepage: https://git-scm.com/
+
+usage: |
+  
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n git
+    conda activate git
+    ```
+    
+  - 安装软件包
+    ```
+    conda install git
+    ```
