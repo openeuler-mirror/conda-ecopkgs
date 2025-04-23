@@ -183,7 +183,28 @@ def parse_yaml_data(yaml_file: str) -> Dict[str, Any]:
             fg="red"
         ))
         return {}
-    return data
+    return normalize_yaml_keys(data)
+
+
+def normalize_yaml_keys(data: Any) -> Any:
+    """
+    Recursively convert all dictionary keys to strings.
+
+    Args:
+        data: Loaded YAML data.
+
+    Returns:
+        YAML data with all dict keys as strings.
+    """
+    if isinstance(data, dict):
+        return {
+            str(k): normalize_yaml_keys(v)
+            for k, v in data.items()
+        }
+    elif isinstance(data, list):
+        return [normalize_yaml_keys(item) for item in data]
+    else:
+        return data
 
 
 def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
