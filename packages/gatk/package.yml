@@ -1,0 +1,28 @@
+name: gatk
+category: hpc
+channel: bioconda
+description: The full Genome Analysis Toolkit (GATK) framework, license restricted.
+license: https://www.broadinstitute.org/gatk/about/#licensing
+homepage: https://www.broadinstitute.org/gatk/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gatk
+    conda activate gatk
+    ```
+    
+  - 安装软件包
+    ```
+    conda install gatk
+    ```
+
+dependency-channels:
+  - conda-forge

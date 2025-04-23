@@ -1,0 +1,24 @@
+name: bmi-wavewatch3
+category: hpc
+channel: conda-forge
+description: WAVEWATCH III data in Python.
+license: MIT
+homepage: https://github.com/csdms/bmi-wavewatch3
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bmi-wavewatch3
+    conda activate bmi-wavewatch3
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bmi-wavewatch3
+    ```

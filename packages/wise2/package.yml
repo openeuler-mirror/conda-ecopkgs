@@ -1,0 +1,28 @@
+name: wise2
+category: hpc
+channel: bioconda
+description: The Wise2.4 package is the "revival" release of Wise2.
+license: Public Domain
+homepage: https://www.ebi.ac.uk/~birney/wise2/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n wise2
+    conda activate wise2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install wise2
+    ```
+
+dependency-channels:
+  - conda-forge
