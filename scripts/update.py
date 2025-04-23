@@ -8,7 +8,7 @@ import shutil
 import sys
 import subprocess
 import yaml
-from typing import List, Any, Union, Tuple, Optional
+from typing import List, Any, Tuple, Dict
 
 DEFAULT_WORKDIR = "/tmp/ecopkgs/verify/"
 
@@ -17,13 +17,16 @@ CONDA_IMAGE_VERSION = "25.1.1"
 
 SUPPORTED_VERSIONS_FILE = "supported-versions.yml"
 PACKAGE_FILE = "package.yml"
+VERIFY_SCRIPT_FILE = "scripts/verify.sh"
+
+UPDATE_CODE_DIR = "update"
+ORIGIN_CODE_DIR = "origin"
 
 REPOSITORY_REQUEST_URL = (
     "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
 )
-
-VERIFY_SCRIPT_URL = (
-    "https://gitee.com/openeuler/conda-ecopkgs/raw/master/scripts/verify.sh"
+ORIGIN_CODE_URL = (
+    "https://gitee.com/openeuler/conda-ecopkgs.git"
 )
 
 # transform openEuler version into specifical format
@@ -78,7 +81,8 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
             if (not change_file.endswith(SUPPORTED_VERSIONS_FILE)
                     or len(change_file.split("/")) != 3):
                 continue
-            if verify_packages(work_dir, change_file):
+
+            if verify_change_file(work_dir, change_file):
                 continue
             else:
                 click.echo(click.style(
@@ -95,69 +99,101 @@ def verify_updates(pr_id: int, work_dir: str) -> bool:
         return False
 
 
-def verify_packages(work_dir: str, change_file: str) -> bool:
+def verify_change_file(work_dir: str, change_file: str) -> bool:
     """
-    Parse supported-versions.yml file and return the
-    latest openEuler and app version.
+    Verify the difference between updated and
+    original supported-versions.yml.
 
     Args:
-        work_dir: CI working directory path
-        change_file: Path to supported-versions.yml file
+        work_dir: CI working directory path.
+        change_file: Path to supported-versions.yml.
 
     Returns:
-        Tuple of (latest openEuler version, latest app version)
-        or None if error
+        True if all new entries are successfully verified,
+        False otherwise.
     """
-    versions_file = os.path.join(work_dir, change_file)
-    if not os.path.exists(versions_file):
-        click.echo(click.style(
-            f"Supported-versions file not found: {versions_file}",
-            fg="red"
-        ))
+    # Load YAML data
+    update_file = os.path.join(
+        work_dir, UPDATE_CODE_DIR, change_file
+    )
+    origin_file = os.path.join(
+        work_dir, ORIGIN_CODE_DIR, change_file
+    )
+    update_data = parse_yaml_data(update_file)
+    origin_data = parse_yaml_data(origin_file)
+
+    # only new os/version/arch need be verified
+    package = change_file.split("/")[1]
+    for os_version, versions in update_data.items():
+        for package_version, arches in versions.items():
+            for arch in arches:
+                if not need_verify(
+                        origin_data, os_version,
+                        package_version, arch
+                ):
+                    continue
+                if not verify_package(
+                        work_dir, package,
+                        os_version, package_version
+                ):
+                    return False
+    return True
+
+
+def need_verify(origin_data: dict, os_version: str,
+                package_version: str, os_arch: str) -> bool:
+    """
+    Check whether a specific OS arch needs verification.
+
+    Args:
+        origin_data: Original YAML content.
+        os_version: openEuler version string.
+        package_version: Package version string.
+        os_arch: Architecture to check.
+
+    Returns:
+        True if this arch is new and needs verification, False otherwise.
+    """
+    app_versions = origin_data.get(os_version, {})
+    origin_arches = app_versions.get(package_version, [])
+
+    # current machine arch or noarch arch need verified
+    machine_arch = platform.machine()
+    if os_arch != machine_arch and os_arch != "noarch":
         return False
 
-    with open(versions_file, 'r') as f:
+    # Only verify if the arch is not present in the original list
+    return os_arch not in origin_arches
+
+
+def parse_yaml_data(yaml_file: str) -> Dict[str, Any]:
+    if not os.path.exists(yaml_file):
+        click.echo(click.style(
+            f"File not found: {yaml_file}",
+            fg="blue"
+        ))
+        return {}
+
+    with open(yaml_file, 'r') as f:
         data = yaml.safe_load(f)
 
     if not data or not isinstance(data, dict):
         click.echo(click.style(
-            f"Invalid YAML format in {versions_file}",
+            f"Invalid YAML format in {yaml_file}",
             fg="red"
         ))
-        return False
-
-    package = change_file.split("/")[1]
-    machine_arch = platform.machine()
-
-    for os_version, supported_arches in data.items():
-        if not supported_arches:
-            continue
-
-        noarch_version = supported_arches.get("noarch")
-        if noarch_version:
-            if not run_verify_command(
-                    work_dir,
-                    package,
-                    os_version,
-                    noarch_version
-            ):
-                return False
-
-        arch_version = supported_arches.get(machine_arch)
-        if arch_version:
-            if not run_verify_command(
-                    work_dir,
-                    package,
-                    os_version,
-                    arch_version
-            ):
-                return False
-
-    return True
+        return {}
+    return data
 
 
 def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
-    package_info_file = f"{work_dir}/packages/{package}/{PACKAGE_FILE}"
+    package_info_file = os.path.join(
+        work_dir,
+        UPDATE_CODE_DIR,
+        "packages",
+        package,
+        PACKAGE_FILE
+    )
     try:
         with open(package_info_file, 'r') as f:
             data = yaml.safe_load(f)
@@ -170,7 +206,9 @@ def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
         raise e
 
 
-def run_verify_command(work_dir, package, os_version, package_version: str) -> bool:
+def verify_package(
+        work_dir, package, os_version, package_version
+) -> bool:
     """
     Find and execute verify.sh in the package directory
 
@@ -183,7 +221,9 @@ def run_verify_command(work_dir, package, os_version, package_version: str) -> b
     Returns:
         True if execution succeeded, False otherwise
     """
-    verify_script = os.path.join(work_dir, "verify.sh")
+    verify_script = os.path.join(
+        work_dir, ORIGIN_CODE_DIR, VERIFY_SCRIPT_FILE
+    )
 
     if not os.path.isfile(verify_script):
         click.echo(click.style(
@@ -255,15 +295,30 @@ def run_verify_command(work_dir, package, os_version, package_version: str) -> b
 
 
 def pull_source_code(pr_id, source_branch, work_dir):
+    os.makedirs(f"{work_dir}/{UPDATE_CODE_DIR}", exist_ok=True)
     source_code_url = get_source_code(pr_id=pr_id)
     command = ['git', 'clone', '-b',
                source_branch,
                source_code_url,
-               work_dir
+               f"{work_dir}/{UPDATE_CODE_DIR}"
                ]
     if subprocess.call(command) != 0:
         click.echo(click.style(
             f"Failed to clone {source_code_url}",
+            fg="red"
+        ))
+        return 1
+    return 0
+
+
+def pull_origin_code(work_dir):
+    os.makedirs(f"{work_dir}/{ORIGIN_CODE_DIR}", exist_ok=True)
+    command = ['git', 'clone', ORIGIN_CODE_URL,
+               f"{work_dir}/{ORIGIN_CODE_DIR}"
+               ]
+    if subprocess.call(command) != 0:
+        click.echo(click.style(
+            f"Failed to clone {ORIGIN_CODE_URL}",
             fg="red"
         ))
         return 1
@@ -322,25 +377,6 @@ def get_source_code(pr_id) -> str:
     return source_code_url
 
 
-def download_verify_script(work_dir: str) -> int:
-    url = f"{VERIFY_SCRIPT_URL}?access_token=" + \
-          os.environ["GITEE_API_TOKEN"]
-
-    save_path = os.path.join(work_dir, "verify.sh")
-
-    response = _request(url)
-    if response.status_code == 200:
-        with open(save_path, "wb") as f:
-            f.write(response.content)
-        return 0
-    click.echo(click.style(
-        f"Failed to download verify script,"
-        f"status code: {response.status_code}, url: {url}",
-        fg="red"
-    ))
-    return 1
-
-
 def init_parser():
     new_parser = argparse.ArgumentParser(
         prog="update.py",
@@ -379,7 +415,6 @@ if __name__ == "__main__":
     work_dir = os.path.join(DEFAULT_WORKDIR, args.source_repo)
     if os.path.exists(work_dir):
         shutil.rmtree(work_dir)
-    os.makedirs(work_dir)
 
     if pull_source_code(
             args.prid,
@@ -388,7 +423,7 @@ if __name__ == "__main__":
     ):
         sys.exit(1)
 
-    if download_verify_script(work_dir):
+    if pull_origin_code(work_dir):
         sys.exit(1)
 
     if not verify_updates(args.prid, work_dir):
