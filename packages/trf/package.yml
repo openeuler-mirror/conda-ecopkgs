@@ -1,0 +1,28 @@
+name: trf
+category: hpc
+channel: bioconda
+description: Tandem Repeats Finder is a program to locate and display tandem repeats in DNA sequences.
+license: AGPL-3.0
+homepage: https://tandem.bu.edu/trf/trf.html
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n trf
+    conda activate trf
+    ```
+    
+  - 安装软件包
+    ```
+    conda install trf
+    ```
+
+dependency-channels:
+  - conda-forge

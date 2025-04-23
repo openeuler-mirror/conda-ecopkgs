@@ -1,0 +1,28 @@
+name: graphmap
+category: hpc
+channel: bioconda
+description: A highly sensitive and accurate mapper for long, error-prone reads.
+license: MIT
+homepage: https://github.com/lbcb-sci/graphmap2
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n graphmap
+    conda activate graphmap
+    ```
+    
+  - 安装软件包
+    ```
+    conda install graphmap
+    ```
+
+dependency-channels:
+  - conda-forge

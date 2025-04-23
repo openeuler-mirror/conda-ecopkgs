@@ -1,0 +1,28 @@
+name: manta
+category: hpc
+channel: bioconda
+description: Structural variant and indel caller for mapped sequencing data.
+license: GPLv3
+homepage: https://github.com/Illumina/manta
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n manta
+    conda activate manta
+    ```
+    
+  - 安装软件包
+    ```
+    conda install manta
+    ```
+
+dependency-channels:
+  - conda-forge

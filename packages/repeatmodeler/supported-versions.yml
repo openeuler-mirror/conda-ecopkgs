@@ -1,0 +1,9 @@
+24.03-LTS-SP1:
+    2.0.6:
+        - noarch
+22.03-LTS-SP4:
+    2.0.6:
+        - noarch
+24.03-LTS:
+    2.0.6:
+        - noarch
