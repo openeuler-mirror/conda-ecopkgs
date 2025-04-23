@@ -1,0 +1,28 @@
+name: emu
+category: hpc
+channel: bioconda
+description: Emu is a relative abundance estimator for 16s genomic data.
+license: MIT
+homepage: https://github.com/treangenlab/emu
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n emu
+    conda activate emu
+    ```
+    
+  - 安装软件包
+    ```
+    conda install emu
+    ```
+
+dependency-channels:
+  - conda-forge

@@ -1,0 +1,24 @@
+name: qe
+category: hpc
+channel: conda-forge
+description: QUANTUM ESPRESSO (opEn-Source Package for Research in Electronic Structure, Simulation, and Optimization).
+license: GPL-2.0-only
+homepage: http://www.quantum-espresso.org
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n qe
+    conda activate qe
+    ```
+    
+  - 安装软件包
+    ```
+    conda install qe
+    ```

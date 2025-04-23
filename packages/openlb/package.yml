@@ -1,0 +1,24 @@
+name: openlb
+category: hpc
+channel: conda-forge
+description: An implementation of lattice Boltzmann methods that is general enough to address a vast range of transport problems, e.g. in computational fluid dynamics.
+license: GPL-2.0-only
+homepage: https://www.openlb.net/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n openlb
+    conda activate openlb
+    ```
+    
+  - 安装软件包
+    ```
+    conda install openlb
+    ```

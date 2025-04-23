@@ -1,0 +1,28 @@
+name: bismark
+category: hpc
+channel: bioconda
+description: Bismark is a program to map bisulfite treated sequencing reads to a genome of interest and perform methylation calls in a single step. The output can be easily imported into a genome viewer, such as SeqMonk, and enables a researcher to analyse the methylation levels of their samples straight away.
+license: GNU General Public License v3 (GPLv3)
+homepage: https://github.com/FelixKrueger/Bismark/
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bismark
+    conda activate bismark
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bismark
+    ```
+
+dependency-channels:
+  - conda-forge
