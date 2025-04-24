@@ -1,9 +1,9 @@
-name: manta
+name: minimap2
 category: hpc
 channel: bioconda
-description: Structural variant and indel caller for mapped sequencing data.
-license: GPLv3
-homepage: https://github.com/Illumina/manta
+description: A versatile pairwise aligner for genomic and spliced nucleotide sequences.
+license: MIT
+homepage: https://github.com/lh3/minimap2
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n manta
-    conda activate manta
+    conda create -n minimap2
+    conda activate minimap2
     ```
     
   - 安装软件包
     ```
-    conda install manta
+    conda install minimap2
     ```
 
 dependency-channels:

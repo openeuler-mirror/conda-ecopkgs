@@ -1,9 +1,9 @@
-name: manta
+name: hyphy
 category: hpc
 channel: bioconda
-description: Structural variant and indel caller for mapped sequencing data.
-license: GPLv3
-homepage: https://github.com/Illumina/manta
+description: An open-source software package for comparative sequence analysis using stochastic evolutionary models.
+license: MIT
+homepage: https://hyphy.org
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n manta
-    conda activate manta
+    conda create -n hyphy
+    conda activate hyphy
     ```
     
   - 安装软件包
     ```
-    conda install manta
+    conda install hyphy
     ```
 
 dependency-channels:

@@ -1,9 +1,9 @@
-name: repeatmodeler
+name: repeatmasker
 category: hpc
 channel: bioconda
-description: RepeatModeler is a de-novo repeat family identification and modeling package.
+description: RepeatMasker is a program that screens DNA sequences for interspersed repeats and low complexity DNA sequences.
 license: Open Software License v2.1
-homepage: https://www.repeatmasker.org/RepeatModeler
+homepage: https://www.repeatmasker.org/RepeatMasker
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n repeatmodeler
-    conda activate repeatmodeler
+    conda create -n repeatmasker
+    conda activate repeatmasker
     ```
     
   - 安装软件包
     ```
-    conda install repeatmodeler
+    conda install repeatmasker
     ```
 
 dependency-channels:

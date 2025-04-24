@@ -1,9 +1,9 @@
-name: manta
+name: sambamba
 category: hpc
 channel: bioconda
-description: Structural variant and indel caller for mapped sequencing data.
-license: GPLv3
-homepage: https://github.com/Illumina/manta
+description: Tools for working with SAM/BAM data.
+license: GPL2
+homepage: https://github.com/biod/sambamba
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n manta
-    conda activate manta
+    conda create -n sambamba
+    conda activate sambamba
     ```
     
   - 安装软件包
     ```
-    conda install manta
+    conda install sambamba
     ```
 
 dependency-channels:

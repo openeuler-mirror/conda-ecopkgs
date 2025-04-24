@@ -1,0 +1,28 @@
+name: tinker
+category: hpc
+channel: bioconda
+description: The Tinker molecular modeling software is a complete and general package for molecular mechanics and dynamics, with some special features for biopolymers.
+license: Custom
+homepage: https://dasher.wustl.edu/tinker/
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n tinker
+    conda activate tinker
+    ```
+    
+  - 安装软件包
+    ```
+    conda install tinker
+    ```
+
+dependency-channels:
+  - conda-forge

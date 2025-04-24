@@ -7,7 +7,7 @@ homepage: https://git-scm.com/
 
 usage: |
   
-  - 添加Channel(可选)
+  - 添加Channel
     ```
     conda config --add channels conda-forge
     ```

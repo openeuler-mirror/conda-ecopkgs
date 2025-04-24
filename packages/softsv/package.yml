@@ -1,9 +1,9 @@
-name: nanopack
+name: softsv
 category: hpc
 channel: bioconda
-description: A meta package for several long read processing and analysis tools.
+description: SoftSV is a tool for the detection of small and large deletions, inversions, tandem duplications and translocations from paired-end sequencing data.
 license: GPL-3.0-only
-homepage: https://github.com/wdecoster/nanopack
+homepage: https://sourceforge.net/projects/softsv
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n nanopack
-    conda activate nanopack
+    conda create -n softsv
+    conda activate softsv
     ```
     
   - 安装软件包
     ```
-    conda install nanopack
+    conda install softsv
     ```
 
 dependency-channels:

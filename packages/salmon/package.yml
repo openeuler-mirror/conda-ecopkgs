@@ -1,9 +1,9 @@
-name: manta
+name: salmon
 category: hpc
 channel: bioconda
-description: Structural variant and indel caller for mapped sequencing data.
+description: Highly-accurate & wicked fast transcript-level quantification from RNA-seq reads using selective alignment.
 license: GPLv3
-homepage: https://github.com/Illumina/manta
+homepage: https://github.com/COMBINE-lab/salmon
 
 usage: |
 
@@ -15,13 +15,13 @@ usage: |
 
   - 创建隔离环境(可选)
     ```
-    conda create -n manta
-    conda activate manta
+    conda create -n salmon
+    conda activate salmon
     ```
     
   - 安装软件包
     ```
-    conda install manta
+    conda install salmon
     ```
 
 dependency-channels:
