@@ -1,0 +1,24 @@
+name: trimmomatic
+category: hpc
+channel: bioconda
+description: A flexible read trimming tool for Illumina NGS data
+license: GPLv3
+homepage: http://www.usadellab.org/cms/?page=trimmomatic
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n trimmomatic
+    conda activate trimmomatic
+    ```
+    
+  - 安装软件包
+    ```
+    conda install trimmomatic
+    ```

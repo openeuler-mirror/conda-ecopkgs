@@ -1,0 +1,28 @@
+name: 3d-dna
+category: hpc
+channel: bioconda
+description: 3D de novo assembly (3D-DNA) pipeline.
+license: MIT
+homepage: https://github.com/aidenlab/3d-dna/tree/201008
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n 3d-dna
+    conda activate 3d-dna
+    ```
+    
+  - 安装软件包
+    ```
+    conda install 3d-dna
+    ```
+
+dependency-channels:
+  - conda-forge
