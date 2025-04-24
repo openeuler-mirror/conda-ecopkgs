@@ -1,0 +1,28 @@
+name: softsv
+category: hpc
+channel: bioconda
+description: SoftSV is a tool for the detection of small and large deletions, inversions, tandem duplications and translocations from paired-end sequencing data.
+license: GPL-3.0-only
+homepage: https://sourceforge.net/projects/softsv
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n softsv
+    conda activate softsv
+    ```
+    
+  - 安装软件包
+    ```
+    conda install softsv
+    ```
+
+dependency-channels:
+  - conda-forge

@@ -1,0 +1,28 @@
+name: hyphy
+category: hpc
+channel: bioconda
+description: An open-source software package for comparative sequence analysis using stochastic evolutionary models.
+license: MIT
+homepage: https://hyphy.org
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n hyphy
+    conda activate hyphy
+    ```
+    
+  - 安装软件包
+    ```
+    conda install hyphy
+    ```
+
+dependency-channels:
+  - conda-forge

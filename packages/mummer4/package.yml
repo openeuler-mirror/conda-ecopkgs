@@ -1,0 +1,28 @@
+name: mummer4
+category: hpc
+channel: bioconda
+description: MUMmer is a system for rapidly aligning entire genomes.
+license: Artistic License 2.0
+homepage: https://mummer4.github.io
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mummer4
+    conda activate mummer4
+    ```
+    
+  - 安装软件包
+    ```
+    conda install mummer4
+    ```
+
+dependency-channels:
+  - conda-forge

@@ -1,0 +1,28 @@
+name: minimap2
+category: hpc
+channel: bioconda
+description: A versatile pairwise aligner for genomic and spliced nucleotide sequences.
+license: MIT
+homepage: https://github.com/lh3/minimap2
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n minimap2
+    conda activate minimap2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install minimap2
+    ```
+
+dependency-channels:
+  - conda-forge

@@ -1,0 +1,24 @@
+name: falcon
+category: hpc
+channel: conda-forge
+description: An unladen web framework for building APIs and app backends.
+license: Apache-2.0
+homepage: http://falconframework.org
+
+usage: |
+  
+  - 添加Channel(可选)
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n falcon
+    conda activate falcon
+    ```
+    
+  - 安装软件包
+    ```
+    conda install falcon
+    ```

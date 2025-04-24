@@ -1,0 +1,28 @@
+name: repeatmasker
+category: hpc
+channel: bioconda
+description: RepeatMasker is a program that screens DNA sequences for interspersed repeats and low complexity DNA sequences.
+license: Open Software License v2.1
+homepage: https://www.repeatmasker.org/RepeatMasker
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n repeatmasker
+    conda activate repeatmasker
+    ```
+    
+  - 安装软件包
+    ```
+    conda install repeatmasker
+    ```
+
+dependency-channels:
+  - conda-forge

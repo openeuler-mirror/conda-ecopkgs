@@ -1,0 +1,28 @@
+name: sambamba
+category: hpc
+channel: bioconda
+description: Tools for working with SAM/BAM data.
+license: GPL2
+homepage: https://github.com/biod/sambamba
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n sambamba
+    conda activate sambamba
+    ```
+    
+  - 安装软件包
+    ```
+    conda install sambamba
+    ```
+
+dependency-channels:
+  - conda-forge
