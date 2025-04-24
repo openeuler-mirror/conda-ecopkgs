@@ -7,7 +7,7 @@ homepage: https://tandem.bu.edu/trf/trf.html
 
 usage: |
 
-  - 添加Channel(可选)
+  - 添加Channel
     ```
     conda config --add channels bioconda
     conda config --add channels conda-forge
