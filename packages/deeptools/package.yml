@@ -1,0 +1,28 @@
+name: deeptools
+category: hpc
+channel: bioconda
+description: A set of user-friendly tools for normalization and visualzation of deep-sequencing data.
+license: MIT
+homepage: https://github.com/deeptools/deepTools
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n deeptools
+    conda activate deeptools
+    ```
+    
+  - 安装软件包
+    ```
+    conda install deeptools
+    ```
+
+dependency-channels:
+  - conda-forge

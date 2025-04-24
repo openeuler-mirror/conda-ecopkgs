@@ -1,0 +1,28 @@
+name: primer3
+category: hpc
+channel: bioconda
+description: Design PCR primers from DNA sequence. From mispriming libraries to sequence quality data to the generation of internal oligos, primer3 does it.
+license: GPLv2
+homepage: https://github.com/primer3-org/primer3
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n primer3
+    conda activate primer3
+    ```
+    
+  - 安装软件包
+    ```
+    conda install primer3
+    ```
+
+dependency-channels:
+  - conda-forge

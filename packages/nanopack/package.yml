@@ -1,0 +1,28 @@
+name: nanopack
+category: hpc
+channel: bioconda
+description: A meta package for several long read processing and analysis tools.
+license: GPL-3.0-only
+homepage: https://github.com/wdecoster/nanopack
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n nanopack
+    conda activate nanopack
+    ```
+    
+  - 安装软件包
+    ```
+    conda install nanopack
+    ```
+
+dependency-channels:
+  - conda-forge

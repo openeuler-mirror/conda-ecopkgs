@@ -1,0 +1,28 @@
+name: gridss
+category: hpc
+channel: bioconda
+description: The Genomic Rearrangement IDentification Software Suite.
+license: GPL-3.0-only
+homepage: https://github.com/PapenfussLab/gridss
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gridss
+    conda activate gridss
+    ```
+    
+  - 安装软件包
+    ```
+    conda install gridss
+    ```
+
+dependency-channels:
+  - conda-forge
