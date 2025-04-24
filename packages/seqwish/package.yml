@@ -1,0 +1,28 @@
+name: seqwish
+category: hpc
+channel: bioconda
+description: Alignment to variation graph inducer.
+license: MIT
+homepage: https://github.com/ekg/seqwish
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n seqwish
+    conda activate seqwish
+    ```
+    
+  - 安装软件包
+    ```
+    conda install seqwish
+    ```
+
+dependency-channels:
+  - conda-forge

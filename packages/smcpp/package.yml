@@ -1,0 +1,28 @@
+name: smcpp
+category: hpc
+channel: bioconda
+description: SMC++ infers population history from whole-genome sequence data.
+license: BSD
+homepage: https://github.com/popgenmethods/smcpp
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n smcpp
+    conda activate smcpp
+    ```
+    
+  - 安装软件包
+    ```
+    conda install smcpp
+    ```
+
+dependency-channels:
+  - conda-forge

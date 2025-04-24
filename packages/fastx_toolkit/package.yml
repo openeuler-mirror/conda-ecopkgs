@@ -1,0 +1,28 @@
+name: fastx_toolkit
+category: hpc
+channel: bioconda
+description: FASTA/FASTQ pre-processing programs.
+license: AGPL-3.0
+homepage: https://github.com/agordon/fastx_toolkit
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n fastx_toolkit
+    conda activate fastx_toolkit
+    ```
+    
+  - 安装软件包
+    ```
+    conda install fastx_toolkit
+    ```
+
+dependency-channels:
+  - conda-forge

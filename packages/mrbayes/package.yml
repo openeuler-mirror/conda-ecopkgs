@@ -1,0 +1,28 @@
+name: mrbayes
+category: hpc
+channel: bioconda
+description: Bayesian Inference of Phylogeny.
+license: GPL3
+homepage: http://mrbayes.sourceforge.net
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mrbayes
+    conda activate mrbayes
+    ```
+    
+  - 安装软件包
+    ```
+    conda install mrbayes
+    ```
+
+dependency-channels:
+  - conda-forge
