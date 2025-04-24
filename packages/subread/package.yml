@@ -1,0 +1,28 @@
+name: subread
+category: hpc
+channel: bioconda
+description: High-performance read alignment, quantification, and mutation discovery.
+license: GPL-3.0-only
+homepage: https://subread.sourceforge.net
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n subread
+    conda activate subread
+    ```
+    
+  - 安装软件包
+    ```
+    conda install subread
+    ```
+
+dependency-channels:
+  - conda-forge

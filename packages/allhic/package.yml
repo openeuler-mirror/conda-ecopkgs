@@ -1,0 +1,28 @@
+name: allhic
+category: hpc
+channel: bioconda
+description: Genome scaffolding based on HiC data in heterozygous and high ploidy genomes.
+license: BSD-3-Clause
+homepage: https://github.com/tanghaibao/allhic
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n allhic
+    conda activate allhic
+    ```
+    
+  - 安装软件包
+    ```
+    conda install allhic
+    ```
+
+dependency-channels:
+  - conda-forge

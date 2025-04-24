@@ -1,0 +1,28 @@
+name: flye 
+category: hpc
+channel: bioconda
+description: A fast and accurate de novo assembler for single molecule sequencing reads using repeat graphs.
+license: BSD-3-Clause
+homepage: https://github.com/fenderglass/Flye
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n flye 
+    conda activate flye 
+    ```
+    
+  - 安装软件包
+    ```
+    conda install flye 
+    ```
+
+dependency-channels:
+  - conda-forge

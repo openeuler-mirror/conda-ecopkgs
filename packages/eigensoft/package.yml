@@ -1,0 +1,28 @@
+name: eigensoft
+category: hpc
+channel: bioconda
+description: The EIGENSOFT package implements methods for analzing population structure and performing stratification correction
+license: Custom OSS
+homepage: https://github.com/DReichLab/EIG
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n eigensoft
+    conda activate eigensoft
+    ```
+    
+  - 安装软件包
+    ```
+    conda install eigensoft
+    ```
+
+dependency-channels:
+  - conda-forge
