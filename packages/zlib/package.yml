@@ -5,6 +5,9 @@ description: Massively spiffy yet delicately unobtrusive compression library
 license: Zlib
 homepage: http://zlib.net/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: A flexible read trimming tool for Illumina NGS data
 license: GPLv3
 homepage: http://www.usadellab.org/cms/?page=trimmomatic
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

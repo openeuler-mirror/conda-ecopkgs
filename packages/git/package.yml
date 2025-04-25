@@ -5,6 +5,9 @@ description: distributed version control system
 license: GPL-2.0-or-later and LGPL-2.1-or-later
 homepage: https://git-scm.com/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
   
   - 添加Channel

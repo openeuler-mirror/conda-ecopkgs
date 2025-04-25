@@ -5,6 +5,9 @@ description: Multiple sequence and structure alignment with top benchmark scores
 license: GPL-3.0-only
 homepage: https://github.com/rcedgar/muscle
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

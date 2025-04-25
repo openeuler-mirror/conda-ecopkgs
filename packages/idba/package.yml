@@ -5,6 +5,9 @@ description: IDBA-UD is a iterative De Bruijn Graph De Novo Assembler for Short 
 license: GPL-2.0-or-later
 homepage: https://github.com/loneknightpy/idba
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

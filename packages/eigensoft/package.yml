@@ -5,6 +5,9 @@ description: The EIGENSOFT package implements methods for analzing population st
 license: Custom OSS
 homepage: https://github.com/DReichLab/EIG
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: Meraculous is a whole genome assembler for Next Generation Sequenci
 license: GPLv3
 homepage: https://jgi.doe.gov/data-and-tools/meraculous/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

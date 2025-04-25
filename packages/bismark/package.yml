@@ -5,6 +5,9 @@ description: Bismark is a program to map bisulfite treated sequencing reads to a
 license: GNU General Public License v3 (GPLv3)
 homepage: https://github.com/FelixKrueger/Bismark/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

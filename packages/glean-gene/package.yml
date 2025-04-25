@@ -5,6 +5,9 @@ description: GLEAN is an unsupervised learning system to integrate disparate sou
 license: Artistic-1.0-Perl
 homepage: https://sourceforge.net/projects/glean-gene/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

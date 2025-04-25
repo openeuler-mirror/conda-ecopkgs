@@ -5,6 +5,9 @@ description: An unladen web framework for building APIs and app backends.
 license: Apache-2.0
 homepage: http://falconframework.org
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
   
   - 添加Channel

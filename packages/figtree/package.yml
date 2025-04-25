@@ -5,6 +5,9 @@ description: FigTree is designed as a graphical viewer of phylogenetic trees and
 license: GPLv2
 homepage: https://github.com/rambaut/figtree
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

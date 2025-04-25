@@ -5,6 +5,9 @@ description: LASTZ is a program for aligning DNA sequences, a pairwise aligner.
 license: MIT
 homepage: http://www.bx.psu.edu/~rsharris/lastz/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

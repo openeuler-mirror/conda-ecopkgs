@@ -5,6 +5,9 @@ description: 3D de novo assembly (3D-DNA) pipeline.
 license: MIT
 homepage: https://github.com/aidenlab/3d-dna/tree/201008
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

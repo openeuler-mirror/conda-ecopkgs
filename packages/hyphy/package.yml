@@ -5,6 +5,9 @@ description: An open-source software package for comparative sequence analysis u
 license: MIT
 homepage: https://hyphy.org
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

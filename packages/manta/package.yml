@@ -5,6 +5,9 @@ description: Structural variant and indel caller for mapped sequencing data.
 license: GPLv3
 homepage: https://github.com/Illumina/manta
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

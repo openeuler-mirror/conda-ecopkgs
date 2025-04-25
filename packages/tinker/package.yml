@@ -5,6 +5,9 @@ description: The Tinker molecular modeling software is a complete and general pa
 license: Custom
 homepage: https://dasher.wustl.edu/tinker/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

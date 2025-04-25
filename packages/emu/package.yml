@@ -5,6 +5,9 @@ description: Emu is a relative abundance estimator for 16s genomic data.
 license: MIT
 homepage: https://github.com/treangenlab/emu
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

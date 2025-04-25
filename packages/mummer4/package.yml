@@ -5,6 +5,9 @@ description: MUMmer is a system for rapidly aligning entire genomes.
 license: Artistic License 2.0
 homepage: https://mummer4.github.io
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

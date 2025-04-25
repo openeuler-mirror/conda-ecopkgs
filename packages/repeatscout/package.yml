@@ -5,6 +5,9 @@ description: De novo identification of repeat families in large genomes.
 license: CC0
 homepage: https://github.com/Dfam-consortium/RepeatScout
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

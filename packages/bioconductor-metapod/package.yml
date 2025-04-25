@@ -5,6 +5,9 @@ description: Meta-Analyses on P-Values of Differential Analyses
 license: GPL-3
 homepage: https://bioconductor.org/packages/3.20/bioc/html/metapod.html
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: Trim adapters from high-throughput sequencing reads.
 license: MIT
 homepage: https://cutadapt.readthedocs.io/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

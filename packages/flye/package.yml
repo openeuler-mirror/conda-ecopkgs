@@ -5,6 +5,9 @@ description: A fast and accurate de novo assembler for single molecule sequencin
 license: BSD-3-Clause
 homepage: https://github.com/fenderglass/Flye
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

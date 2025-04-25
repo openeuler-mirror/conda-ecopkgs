@@ -5,6 +5,9 @@ description: Design PCR primers from DNA sequence. From mispriming libraries to 
 license: GPLv2
 homepage: https://github.com/primer3-org/primer3
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: A set of user-friendly tools for normalization and visualzation of 
 license: MIT
 homepage: https://github.com/deeptools/deepTools
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel
