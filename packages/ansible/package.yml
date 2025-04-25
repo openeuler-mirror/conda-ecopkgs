@@ -1,0 +1,27 @@
+name: ansible
+category: others
+channel: conda-forge
+description: Ansible is a radically simple IT automation platform
+license: GPL-3.0-only
+homepage: http://github.com/ansible/ansible
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n ansible
+    conda activate ansible
+    ```
+    
+  - 安装软件包
+    ```
+    conda install ansible
+    ```

@@ -1,0 +1,27 @@
+name: rabbitmq-server
+category: others
+channel: conda-forge
+description: Open source multi-protocol messaging broker
+license: MPL-2.0
+homepage: https://www.rabbitmq.com
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n rabbitmq-server
+    conda activate rabbitmq-server
+    ```
+    
+  - 安装软件包
+    ```
+    conda install rabbitmq-server
+    ```

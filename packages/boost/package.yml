@@ -1,0 +1,27 @@
+name: boost
+category: others
+channel: conda-forge
+description: Free peer-reviewed portable C++ source libraries.
+license: BSL-1.0
+homepage: http://www.boost.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n boost
+    conda activate boost
+    ```
+    
+  - 安装软件包
+    ```
+    conda install boost
+    ```
