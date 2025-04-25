@@ -1,0 +1,27 @@
+name: tinyxml2
+category: others
+channel: conda-forge
+description: TinyXML2 is a simple, small, efficient, C++ XML parser that can be easily integrated into other programs.
+license: Zlib
+homepage: http://leethomason.github.io/tinyxml2/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n tinyxml2
+    conda activate tinyxml2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install tinyxml2
+    ```

@@ -1,0 +1,27 @@
+name: log4cpp
+category: others
+channel: conda-forge
+description: Log4cpp is library of C++ classes for flexible logging to files
+license: LGPL-2.1-or-later
+homepage: http://log4cpp.sourceforge.net
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n log4cpp
+    conda activate log4cpp
+    ```
+    
+  - 安装软件包
+    ```
+    conda install log4cpp
+    ```
