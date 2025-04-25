@@ -5,6 +5,9 @@ description: Classifier for metagenomic sequences. Supports classifier scripts
 license: GPL-3.0-only
 homepage: https://github.com/DaehwanKimLab/centrifuge
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

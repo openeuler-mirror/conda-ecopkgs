@@ -5,6 +5,9 @@ description: Gene selection based on the marginal distributions of gene profiles
 license: GPL (>= 2)
 homepage: https://bioconductor.org/packages/3.20/bioc/html/GeneSelectMMD.html
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

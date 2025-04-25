@@ -5,6 +5,9 @@ description: The BWA read mapper.
 license: GPL3
 homepage: https://github.com/lh3/bwa
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

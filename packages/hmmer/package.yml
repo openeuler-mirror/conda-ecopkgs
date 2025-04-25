@@ -5,6 +5,9 @@ description: Biosequence analysis using profile hidden Markov models.
 license: BSD
 homepage: http://hmmer.org/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

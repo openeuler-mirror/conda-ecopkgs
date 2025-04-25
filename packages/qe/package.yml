@@ -5,6 +5,9 @@ description: QUANTUM ESPRESSO (opEn-Source Package for Research in Electronic St
 license: GPL-2.0-only
 homepage: http://www.quantum-espresso.org
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

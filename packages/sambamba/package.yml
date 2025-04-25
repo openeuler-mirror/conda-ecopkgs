@@ -5,6 +5,9 @@ description: Tools for working with SAM/BAM data.
 license: GPL2
 homepage: https://github.com/biod/sambamba
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

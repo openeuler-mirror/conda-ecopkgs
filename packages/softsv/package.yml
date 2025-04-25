@@ -5,6 +5,9 @@ description: SoftSV is a tool for the detection of small and large deletions, in
 license: GPL-3.0-only
 homepage: https://sourceforge.net/projects/softsv
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

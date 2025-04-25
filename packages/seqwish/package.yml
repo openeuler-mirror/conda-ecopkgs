@@ -5,6 +5,9 @@ description: Alignment to variation graph inducer.
 license: MIT
 homepage: https://github.com/ekg/seqwish
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

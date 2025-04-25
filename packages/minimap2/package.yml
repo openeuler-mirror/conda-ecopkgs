@@ -5,6 +5,9 @@ description: A versatile pairwise aligner for genomic and spliced nucleotide seq
 license: MIT
 homepage: https://github.com/lh3/minimap2
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

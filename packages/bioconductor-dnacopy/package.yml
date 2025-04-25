@@ -5,6 +5,9 @@ description: DNA Copy Number Data Analysis
 license: GPL (>= 2)
 homepage: https://bioconductor.org/packages/3.20/bioc/html/DNAcopy.html
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: The full Genome Analysis Toolkit (GATK) framework, license restrict
 license: https://www.broadinstitute.org/gatk/about/#licensing
 homepage: https://www.broadinstitute.org/gatk/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

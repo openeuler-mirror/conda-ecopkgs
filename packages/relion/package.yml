@@ -5,6 +5,9 @@ description: Image-processing software for cryo-electron microscopy.
 license: GPL-2.0-or-later
 homepage: https://github.com/3dem/relion
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: Tandem Repeats Finder is a program to locate and display tandem rep
 license: AGPL-3.0
 homepage: https://tandem.bu.edu/trf/trf.html
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

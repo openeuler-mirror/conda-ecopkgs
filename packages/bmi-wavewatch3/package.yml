@@ -5,6 +5,9 @@ description: WAVEWATCH III data in Python.
 license: MIT
 homepage: https://github.com/csdms/bmi-wavewatch3
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: Highly-accurate & wicked fast transcript-level quantification from 
 license: GPLv3
 homepage: https://github.com/COMBINE-lab/salmon
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

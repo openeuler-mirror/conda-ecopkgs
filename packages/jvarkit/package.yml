@@ -5,6 +5,9 @@ description: Java utilities for Bioinformatics.
 license: MIT
 homepage: https://github.com/lindenb/jvarkit
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

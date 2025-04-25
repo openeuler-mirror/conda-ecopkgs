@@ -5,6 +5,9 @@ description: RepeatMasker is a program that screens DNA sequences for interspers
 license: Open Software License v2.1
 homepage: https://www.repeatmasker.org/RepeatMasker
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

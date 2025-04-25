@@ -5,6 +5,9 @@ description: VAPOR is a tool for classification of Influenza samples from raw sh
 license: GPL-3.0-only
 homepage: https://github.com/connor-lab/vapor
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

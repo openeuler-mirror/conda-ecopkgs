@@ -5,6 +5,9 @@ description: A highly sensitive and accurate mapper for long, error-prone reads.
 license: MIT
 homepage: https://github.com/lbcb-sci/graphmap2
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

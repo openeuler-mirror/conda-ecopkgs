@@ -5,6 +5,9 @@ description: This software package infers population size history from a diploid
 license: MIT license
 homepage: https://github.com/lh3/psmc
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

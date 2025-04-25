@@ -5,6 +5,9 @@ description: The Wise2.4 package is the "revival" release of Wise2.
 license: Public Domain
 homepage: https://www.ebi.ac.uk/~birney/wise2/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

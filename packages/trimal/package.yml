@@ -5,6 +5,9 @@ description: A tool for the automated removal of spurious sequences or poorly al
 license: GNU General Public License v3 or later (GPLv3+)
 homepage: https://trimal.readthedocs.io
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

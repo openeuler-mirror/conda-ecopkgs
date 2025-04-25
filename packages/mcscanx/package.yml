@@ -5,6 +5,9 @@ description: Multiple Collinearity Scan toolkit X version.
 license: BSD-2-Clause
 homepage: https://github.com/wyp1125/MCScanX
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

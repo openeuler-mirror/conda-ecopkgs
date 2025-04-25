@@ -5,6 +5,9 @@ description: C++ API & command-line toolkit for working with BAM data
 license: MIT
 homepage: https://github.com/pezmaster31/bamtools
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

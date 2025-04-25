@@ -5,6 +5,9 @@ description: zlib data compression library for the next generation systems
 license: Zlib
 homepage: https://github.com/zlib-ng/zlib-ng
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: Functions to handle cDNA microarray data, including several methods
 license: GPL (>= 2)
 homepage: https://bioconductor.org/packages/3.17/bioc/html/maigesPack.html
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

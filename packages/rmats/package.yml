@@ -5,6 +5,9 @@ description: MATS is a computational tool to detect differential alternative spl
 license: Free for non-commercial use, see LICENSE file
 homepage: http://rnaseq-mats.sourceforge.net
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

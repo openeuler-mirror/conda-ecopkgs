@@ -5,6 +5,9 @@ description: Mark duplicates in and extract discordant and split reads from SAM 
 license: MIT
 homepage: https://github.com/GregoryFaust/samblaster
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

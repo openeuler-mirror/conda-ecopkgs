@@ -5,6 +5,9 @@ description: A method for variant graph genotyping based on exact alignment of k
 license: MIT
 homepage: https://github.com/bioinformatics-centre/BayesTyper
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

@@ -5,6 +5,9 @@ description: SMC++ infers population history from whole-genome sequence data.
 license: BSD
 homepage: https://github.com/popgenmethods/smcpp
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

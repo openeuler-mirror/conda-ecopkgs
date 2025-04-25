@@ -5,6 +5,9 @@ description: The Genomic Rearrangement IDentification Software Suite.
 license: GPL-3.0-only
 homepage: https://github.com/PapenfussLab/gridss
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel

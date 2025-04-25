@@ -5,6 +5,9 @@ description: A third-generation wave model, that computes random, short-crested 
 license: GPL-3.0-or-later
 homepage: https://swanmodel.sourceforge.io/
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
   
   - 添加Channel

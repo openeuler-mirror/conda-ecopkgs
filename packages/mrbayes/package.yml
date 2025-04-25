@@ -5,6 +5,9 @@ description: Bayesian Inference of Phylogeny.
 license: GPL3
 homepage: http://mrbayes.sourceforge.net
 
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
 usage: |
 
   - 添加Channel
