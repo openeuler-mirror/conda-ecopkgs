@@ -1,0 +1,27 @@
+name: r-base
+category: others
+channel: conda-forge
+description: R is a free software environment for statistical computing and graphics.
+license: GPL-2.0-or-later
+homepage: http://www.r-project.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n r-base
+    conda activate r-base
+    ```
+    
+  - 安装软件包
+    ```
+    conda install r-base
+    ```
