@@ -1,0 +1,27 @@
+name: cmake
+category: others
+channel: conda-forge
+description: CMake is an extensible, open-source system that manages the build proces
+license: BSD-3-Clause
+homepage: http://www.cmake.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n cmake
+    conda activate cmake
+    ```
+    
+  - 安装软件包
+    ```
+    conda install cmake
+    ```

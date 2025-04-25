@@ -1,0 +1,27 @@
+name: leveldb
+category: database
+channel: conda-forge
+description: A fast key-value storage library providing ordered mappings.
+license: BSD-3-Clause
+homepage: https://github.com/google/leveldb
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n leveldb
+    conda activate leveldb
+    ```
+    
+  - 安装软件包
+    ```
+    conda install leveldb
+    ```

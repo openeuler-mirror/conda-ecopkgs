@@ -1,0 +1,27 @@
+name: scala3
+category: others
+channel: conda-forge
+description: The Scala 3 compiler, also known as Dotty.
+license: Apache-2.0
+homepage: https://dotty.epfl.ch/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n scala3
+    conda activate scala3
+    ```
+    
+  - 安装软件包
+    ```
+    conda install scala3
+    ```

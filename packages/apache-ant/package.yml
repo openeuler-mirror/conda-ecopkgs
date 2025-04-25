@@ -1,0 +1,27 @@
+name: apache-ant
+category: others
+channel: conda-forge
+description: Apache Ant is a Java library and command-line tool that mainly helps building software.
+license: Apache-2.0
+homepage: https://ant.apache.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n apache-ant
+    conda activate apache-ant
+    ```
+    
+  - 安装软件包
+    ```
+    conda install apache-ant
+    ```
