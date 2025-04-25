@@ -1,0 +1,30 @@
+name: bioconductor-kebabs
+category: hpc
+channel: bioconda
+description: Kernel-Based Analysis of Biological Sequences.
+license: GPL (>= 2.1)
+homepage: https://bioconductor.org/packages/3.20/bioc/html/kebabs.html
+maintainer: baigj
+maintainer_email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bioconductor-kebabs
+    conda activate bioconductor-kebabs
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bioconductor-kebabs
+    ```
+
+dependency-channels:
+  - conda-forge
