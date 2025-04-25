@@ -1,0 +1,28 @@
+name: idba
+category: hpc
+channel: bioconda
+description: IDBA-UD is a iterative De Bruijn Graph De Novo Assembler for Short Reads Sequencing data with Highly Uneven Sequencing Depth.
+license: GPL-2.0-or-later
+homepage: https://github.com/loneknightpy/idba
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n idba
+    conda activate idba
+    ```
+    
+  - 安装软件包
+    ```
+    conda install idba
+    ```
+
+dependency-channels:
+  - conda-forge

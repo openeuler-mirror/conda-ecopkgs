@@ -1,0 +1,15 @@
+24.03-LTS-SP1:
+    7.bba0d80:
+        - aarch64
+    6.a5d39d9:
+        - x86_64
+22.03-LTS-SP4:
+    7.bba0d80:
+        - aarch64
+    6.a5d39d9:
+        - x86_64
+24.03-LTS:
+    7.bba0d80:
+        - aarch64
+    6.a5d39d9:
+        - x86_64

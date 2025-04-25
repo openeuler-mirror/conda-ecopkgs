@@ -1,0 +1,28 @@
+name: graphtyper
+category: hpc
+channel: bioconda
+description: Population-scale genotyping using pangenome graphs
+license: MIT
+homepage: https://github.com/DecodeGenetics/graphtyper
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n graphtyper
+    conda activate graphtyper
+    ```
+    
+  - 安装软件包
+    ```
+    conda install graphtyper
+    ```
+
+dependency-channels:
+  - conda-forge
