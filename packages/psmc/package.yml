@@ -1,0 +1,28 @@
+name: psmc
+category: hpc
+channel: bioconda
+description: This software package infers population size history from a diploid sequence using the Pairwise Sequentially Markovian Coalescent (PSMC) model
+license: MIT license
+homepage: https://github.com/lh3/psmc
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n psmc
+    conda activate psmc
+    ```
+    
+  - 安装软件包
+    ```
+    conda install psmc
+    ```
+
+dependency-channels:
+  - conda-forge

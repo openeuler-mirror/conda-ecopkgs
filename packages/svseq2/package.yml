@@ -1,0 +1,28 @@
+name: svseq2
+category: hpc
+channel: bioconda
+description: An improved approach for accurate and efficient calling of structural variations with low-coverage sequence data
+license: CC-PDDC
+homepage: https://sourceforge.net/projects/svseq2/
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n svseq2
+    conda activate svseq2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install svseq2
+    ```
+
+dependency-channels:
+  - conda-forge

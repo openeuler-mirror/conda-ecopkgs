@@ -1,0 +1,28 @@
+name: metaeuk
+category: hpc
+channel: bioconda
+description: MetaEuk - sensitive, high-throughput gene discovery and annotation for large-scale eukaryotic metagenomics
+license: GPL-3
+homepage: https://github.com/soedinglab/metaeuk
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n metaeuk
+    conda activate metaeuk
+    ```
+    
+  - 安装软件包
+    ```
+    conda install metaeuk
+    ```
+
+dependency-channels:
+  - conda-forge
