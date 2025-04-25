@@ -1,0 +1,27 @@
+name: isa-l
+category: others
+channel: conda-forge
+description: provides tools to minimize disk space use and maximize storage throughput, security, and resilience.
+license: BSD-3-Clause
+homepage: https://software.intel.com/content/www/us/en/develop/tools/isa-l.html
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n isa-l
+    conda activate isa-l
+    ```
+    
+  - 安装软件包
+    ```
+    conda install isa-l
+    ```

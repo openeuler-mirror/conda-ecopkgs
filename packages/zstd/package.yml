@@ -1,0 +1,27 @@
+name: zstd
+category: others
+channel: conda-forge
+description: Zstandard - Fast real-time compression algorithm
+license: BSD-3-Clause
+homepage: http://www.zstd.net
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n zstd
+    conda activate zstd
+    ```
+    
+  - 安装软件包
+    ```
+    conda install zstd
+    ```

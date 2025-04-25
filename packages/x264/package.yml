@@ -1,0 +1,27 @@
+name: x264
+category: others
+channel: conda-forge
+description: A free software library for encoding video streams into the H.264/MPEG-4 AVC format.
+license: GPL-2.0
+homepage: http://www.videolan.org/developers/x264.html
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n x264
+    conda activate x264
+    ```
+    
+  - 安装软件包
+    ```
+    conda install x264
+    ```

@@ -1,0 +1,27 @@
+name: x265
+category: others
+channel: conda-forge
+description: Open Source H.265/HEVC video encoder
+license: GPL-2.0-or-later
+homepage: https://www.x265.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n x265
+    conda activate x265
+    ```
+    
+  - 安装软件包
+    ```
+    conda install x265
+    ```

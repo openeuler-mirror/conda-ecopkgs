@@ -1,0 +1,27 @@
+name: libdrm
+category: others
+channel: conda-forge
+description: userspace library for drm
+license: MIT
+homepage: https://gitlab.freedesktop.org/mesa/drm
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n libdrm
+    conda activate libdrm
+    ```
+    
+  - 安装软件包
+    ```
+    conda install libdrm
+    ```
