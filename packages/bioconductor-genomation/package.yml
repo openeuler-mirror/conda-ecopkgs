@@ -5,7 +5,7 @@ description: Summary, annotation and visualization of genomic data.
 license: Artistic-2.0
 homepage: https://bioconductor.org/packages/3.20/bioc/html/genomation.html
 maintainer: baigj
-maintainer_email: guangjiebai@gmail.com
+maintainer-email: guangjiebai@gmail.com
 
 usage: |
 
