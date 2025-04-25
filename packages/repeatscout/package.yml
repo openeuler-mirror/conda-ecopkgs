@@ -1,0 +1,28 @@
+name: repeatscout
+category: hpc
+channel: bioconda
+description: De novo identification of repeat families in large genomes.
+license: CC0
+homepage: https://github.com/Dfam-consortium/RepeatScout
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n repeatscout
+    conda activate repeatscout
+    ```
+    
+  - 安装软件包
+    ```
+    conda install repeatscout
+    ```
+
+dependency-channels:
+  - conda-forge

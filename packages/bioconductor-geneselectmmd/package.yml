@@ -1,0 +1,28 @@
+name: bioconductor-geneselectmmd
+category: hpc
+channel: bioconda
+description: Gene selection based on the marginal distributions of gene profiles that characterized by a mixture of three-component multivariate distributions
+license: GPL (>= 2)
+homepage: https://bioconductor.org/packages/3.20/bioc/html/GeneSelectMMD.html
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bioconductor-geneselectmmd
+    conda activate bioconductor-geneselectmmd
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bioconductor-geneselectmmd
+    ```
+
+dependency-channels:
+  - conda-forge

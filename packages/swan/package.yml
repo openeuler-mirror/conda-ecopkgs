@@ -1,0 +1,24 @@
+name: swan
+category: hpc
+channel: conda-forge
+description: A third-generation wave model, that computes random, short-crested wind-generated waves in coastal regions and inland waters.
+license: GPL-3.0-or-later
+homepage: https://swanmodel.sourceforge.io/
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n swan
+    conda activate swan
+    ```
+    
+  - 安装软件包
+    ```
+    conda install swan
+    ```
