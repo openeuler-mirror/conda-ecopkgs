@@ -1,0 +1,27 @@
+name: opencv
+category: others
+channel: conda-forge
+description: Computer vision and machine learning software library.
+license: Apache-2.0
+homepage: https://opencv.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n opencv
+    conda activate opencv
+    ```
+    
+  - 安装软件包
+    ```
+    conda install opencv
+    ```

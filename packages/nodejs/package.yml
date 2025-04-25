@@ -1,0 +1,27 @@
+name: nodejs
+category: others
+channel: conda-forge
+description: a platform for easily building fast, scalable network applications
+license: MIT
+homepage: https://nodejs.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n nodejs
+    conda activate nodejs
+    ```
+    
+  - 安装软件包
+    ```
+    conda install nodejs
+    ```

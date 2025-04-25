@@ -1,0 +1,27 @@
+name: openh264
+category: others
+channel: conda-forge
+description: OpenH264 is a codec library which supports H.264 encoding and decoding
+license: BSD-2-Clause
+homepage: http://www.openh264.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n openh264
+    conda activate openh264
+    ```
+    
+  - 安装软件包
+    ```
+    conda install openh264
+    ```

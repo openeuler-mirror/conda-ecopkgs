@@ -1,0 +1,27 @@
+name: libjpeg-turbo
+category: others
+channel: conda-forge
+description: IJG JPEG compliant runtime library with SIMD and other optimizations
+license: IJG AND BSD-3-Clause AND Zlib
+homepage: http://www.libjpeg-turbo.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n libjpeg-turbo
+    conda activate libjpeg-turbo
+    ```
+    
+  - 安装软件包
+    ```
+    conda install libjpeg-turbo
+    ```
