@@ -1,0 +1,27 @@
+name: pcre2
+category: others
+channel: conda-forge
+description: Regular expression pattern matching using Perl 5 syntax and semantics.
+license: BSD-3-Clause
+homepage: http://www.pcre.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n pcre2
+    conda activate pcre2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install pcre2
+    ```

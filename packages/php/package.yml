@@ -1,0 +1,27 @@
+name: php
+category: others
+channel: conda-forge
+description: PHP is a popular general-purpose scripting language that is especially suited to web development.
+license: PHP-3.01
+homepage: https://github.com/php/php-src
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n php
+    conda activate php
+    ```
+    
+  - 安装软件包
+    ```
+    conda install php
+    ```
