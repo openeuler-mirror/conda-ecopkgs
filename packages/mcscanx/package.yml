@@ -1,0 +1,28 @@
+name: mcscanx
+category: hpc
+channel: bioconda
+description: Multiple Collinearity Scan toolkit X version.
+license: BSD-2-Clause
+homepage: https://github.com/wyp1125/MCScanX
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mcscanx
+    conda activate mcscanx
+    ```
+    
+  - 安装软件包
+    ```
+    conda install mcscanx
+    ```
+
+dependency-channels:
+  - conda-forge

@@ -1,0 +1,28 @@
+name: seqkit
+category: hpc
+channel: bioconda
+description: A cross-platform and ultrafast toolkit for FASTA/Q file manipulation.
+license: MIT
+homepage: https://github.com/shenwei356/seqkit
+
+usage: |
+
+  - 添加Channel(可选)
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n seqkit
+    conda activate seqkit
+    ```
+    
+  - 安装软件包
+    ```
+    conda install seqkit
+    ```
+
+dependency-channels:
+  - conda-forge

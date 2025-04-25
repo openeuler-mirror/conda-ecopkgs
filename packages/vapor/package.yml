@@ -1,0 +1,24 @@
+name: vapor
+category: hpc
+channel: bioconda
+description: VAPOR is a tool for classification of Influenza samples from raw short read sequence data for downstream bioinformatics analysis.
+license: GPL-3.0-only
+homepage: https://github.com/connor-lab/vapor
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n vapor
+    conda activate vapor
+    ```
+    
+  - 安装软件包
+    ```
+    conda install vapor
+    ```

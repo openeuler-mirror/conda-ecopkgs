@@ -1,0 +1,28 @@
+name: glean-gene
+category: hpc
+channel: bioconda
+description: GLEAN is an unsupervised learning system to integrate disparate sources of gene structure evidence (gene model predictions, EST/protein genomic sequence alignments, SAGE/peptide tags, etc) to produce a consensus gene prediction, without prior training.
+license: Artistic-1.0-Perl
+homepage: https://sourceforge.net/projects/glean-gene/
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n glean-gene
+    conda activate glean-gene
+    ```
+    
+  - 安装软件包
+    ```
+    conda install glean-gene
+    ```
+
+dependency-channels:
+  - conda-forge
