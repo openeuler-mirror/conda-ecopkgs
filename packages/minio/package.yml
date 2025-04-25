@@ -1,0 +1,27 @@
+name: minio
+category: storage
+channel: conda-forge
+description: MinIO Python Library for Amazon S3 Compatible Cloud Storage for Python
+license: Apache-2.0
+homepage: https://github.com/minio/minio-py
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n minio
+    conda activate minio
+    ```
+    
+  - 安装软件包
+    ```
+    conda install minio
+    ```

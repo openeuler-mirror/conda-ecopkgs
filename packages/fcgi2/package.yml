@@ -1,0 +1,27 @@
+name: fcgi2
+category: others
+channel: conda-forge
+description: FastCGI implementation
+license: BSD-3-Clause
+homepage: https://github.com/FastCGI-Archives/fcgi2
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n fcgi2
+    conda activate fcgi2
+    ```
+    
+  - 安装软件包
+    ```
+    conda install fcgi2
+    ```

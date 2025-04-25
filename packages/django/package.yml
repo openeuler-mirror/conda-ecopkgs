@@ -1,0 +1,27 @@
+name: django
+category: others
+channel: conda-forge
+description: A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+license: BSD-3-Clause
+homepage: http://www.djangoproject.com/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n django
+    conda activate django
+    ```
+    
+  - 安装软件包
+    ```
+    conda install django
+    ```
