@@ -5,7 +5,7 @@ description: DNA methylation analysis from high-throughput bisulfite sequencing 
 license: Artistic-2.0
 homepage: https://bioconductor.org/packages/3.20/bioc/html/methylKit.html
 maintainer: baigj
-maintainer_email: guangjiebai@gmail.com
+maintainer-email: guangjiebai@gmail.com
 
 usage: |
 
