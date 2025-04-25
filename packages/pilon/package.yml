@@ -1,0 +1,27 @@
+name: pilon
+category: hpc
+channel: bioconda
+description: Pilon is an automated genome assembly improvement and variant detection tool.
+license: GPLv2
+homepage: https://github.com/broadinstitute/pilon/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n pilon
+    conda activate pilon
+    ```
+    
+  - 安装软件包
+    ```
+    conda install pilon
+    ```

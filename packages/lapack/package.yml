@@ -1,0 +1,27 @@
+name: lapack
+category: others
+channel: conda-forge
+description: Linear Algebra PACKage
+license: BSD-3-Clause
+homepage: https://www.netlib.org/lapack/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n lapack
+    conda activate lapack
+    ```
+    
+  - 安装软件包
+    ```
+    conda install lapack
+    ```
