@@ -1,0 +1,27 @@
+name: rocksdb
+category: database
+channel: conda-forge
+description: A library that provides an embeddable, persistent key-value store for fast storage.
+license: Apache-2.0
+homepage: https://rocksdb.org
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n rocksdb
+    conda activate rocksdb
+    ```
+    
+  - 安装软件包
+    ```
+    conda install rocksdb
+    ```

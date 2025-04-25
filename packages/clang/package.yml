@@ -1,0 +1,27 @@
+name: clang
+category: others
+channel: conda-forge
+description: Development headers and libraries for Clang
+license: Apache-2.0 WITH LLVM-exception
+homepage: http://llvm.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n clang
+    conda activate clang
+    ```
+    
+  - 安装软件包
+    ```
+    conda install clang
+    ```

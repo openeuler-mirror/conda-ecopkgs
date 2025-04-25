@@ -1,0 +1,27 @@
+name: mongodb
+category: database
+channel: conda-forge
+description: A next-gen database that lets you do things you could never do before
+license: SSPL-1.0
+homepage: http://www.mongodb.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mongodb
+    conda activate mongodb
+    ```
+    
+  - 安装软件包
+    ```
+    conda install mongodb
+    ```

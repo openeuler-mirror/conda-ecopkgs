@@ -1,0 +1,27 @@
+name: gdb
+category: others
+channel: conda-forge
+description: GDB, the GNU Project debugger, allows you to see what is going on inside another program while it executes -- or what another program was doing at the moment it crashed.
+license: GPL-3.0-only
+homepage: https://www.gnu.org/software/gdb/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gdb
+    conda activate gdb
+    ```
+    
+  - 安装软件包
+    ```
+    conda install gdb
+    ```
