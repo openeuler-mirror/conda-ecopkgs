@@ -1,0 +1,27 @@
+name: mpfr
+category: others
+channel: conda-forge
+description: The MPFR library is a C library for multiple-precision floating-point computations with correct rounding.
+license: LGPL-3.0-only
+homepage: http://www.mpfr.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mpfr
+    conda activate mpfr
+    ```
+    
+  - 安装软件包
+    ```
+    conda install mpfr
+    ```

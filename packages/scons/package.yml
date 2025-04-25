@@ -1,0 +1,27 @@
+name: scons
+category: others
+channel: conda-forge
+description: Open Source next-generation build tool.
+license: MIT
+homepage: http://www.scons.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n scons
+    conda activate scons
+    ```
+    
+  - 安装软件包
+    ```
+    conda install scons
+    ```
