@@ -1,0 +1,27 @@
+name: perl
+category: others
+channel: conda-forge
+description: The Perl programming language interpreter.
+license: GPL-1.0-or-later OR Artistic-1.0-Perl
+homepage: http://www.perl.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n perl
+    conda activate perl
+    ```
+    
+  - 安装软件包
+    ```
+    conda install perl
+    ```

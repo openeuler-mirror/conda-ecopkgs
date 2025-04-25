@@ -1,0 +1,27 @@
+name: ruby
+category: others
+channel: conda-forge
+description: A dynamic, open source programming language with a focus on simplicity and productivity.
+license: BSD-2-Clause
+homepage: https://www.ruby-lang.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n ruby
+    conda activate ruby
+    ```
+    
+  - 安装软件包
+    ```
+    conda install ruby
+    ```
