@@ -1,0 +1,28 @@
+name: jvarkit
+category: hpc
+channel: bioconda
+description: Java utilities for Bioinformatics.
+license: MIT
+homepage: https://github.com/lindenb/jvarkit
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n jvarkit
+    conda activate jvarkit
+    ```
+    
+  - 安装软件包
+    ```
+    conda install jvarkit
+    ```
+
+dependency-channels:
+  - conda-forge

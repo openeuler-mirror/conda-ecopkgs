@@ -1,0 +1,28 @@
+name: bioconductor-metapod
+category: hpc
+channel: bioconda
+description: Meta-Analyses on P-Values of Differential Analyses
+license: GPL-3
+homepage: https://bioconductor.org/packages/3.20/bioc/html/metapod.html
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bioconductor-metapod
+    conda activate bioconductor-metapod
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bioconductor-metapod
+    ```
+
+dependency-channels:
+  - conda-forge
