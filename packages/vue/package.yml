@@ -1,0 +1,27 @@
+name: vue
+category: others
+channel: conda-forge
+description: A progressive, incrementally-adoptable JavaScript framework for building UI on the web.
+license: MIT
+homepage: https://github.com/vuejs/vue
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n vue
+    conda activate vue
+    ```
+    
+  - 安装软件包
+    ```
+    conda install vue
+    ```

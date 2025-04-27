@@ -1,0 +1,27 @@
+name: curl
+category: others
+channel: conda-forge
+description: tool and library for transferring data with URL syntax
+license: curl
+homepage: http://curl.haxx.se/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n curl
+    conda activate curl
+    ```
+    
+  - 安装软件包
+    ```
+    conda install curl
+    ```

@@ -1,0 +1,27 @@
+name: tesseract
+category: others
+channel: conda-forge
+description: An optical character recognition (OCR) engine
+license: Apache-2.0
+homepage: https://github.com/tesseract-ocr/tesseract
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n tesseract
+    conda activate tesseract
+    ```
+    
+  - 安装软件包
+    ```
+    conda install tesseract
+    ```

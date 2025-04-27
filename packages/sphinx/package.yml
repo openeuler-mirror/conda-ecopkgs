@@ -1,0 +1,27 @@
+name: sphinx
+category: others
+channel: conda-forge
+description: Sphinx makes it easy to create intelligent and beautiful documentation.
+license: BSD-2-Clause
+homepage: https://www.sphinx-doc.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n sphinx
+    conda activate sphinx
+    ```
+    
+  - 安装软件包
+    ```
+    conda install sphinx
+    ```

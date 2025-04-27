@@ -1,0 +1,27 @@
+name: r-shiny
+category: others
+channel: conda-forge
+description: Makes it incredibly easy to build interactive web applications with R. Automatic "reactive" binding between inputs and outputs and extensive prebuilt widgets make it possible to build beautiful, responsive, and powerful applications with minimal effort.
+license: GPL-3.0-only
+homepage: https://shiny.rstudio.com/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n r-shiny
+    conda activate r-shiny
+    ```
+    
+  - 安装软件包
+    ```
+    conda install r-shiny
+    ```

@@ -1,0 +1,27 @@
+name: lzo
+category: others
+channel: conda-forge
+description: LZO is a portable lossless data compression library written in ANSI C.
+license: GPL-2.0-or-later
+homepage: http://www.oberhumer.com/opensource/lzo/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n lzo
+    conda activate lzo
+    ```
+    
+  - 安装软件包
+    ```
+    conda install lzo
+    ```

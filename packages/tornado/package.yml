@@ -1,0 +1,27 @@
+name: tornado
+category: others
+channel: conda-forge
+description: A Python web framework and asynchronous networking library, originally developed at FriendFeed.
+license: Apache-2.0
+homepage: https://www.tornadoweb.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n tornado
+    conda activate tornado
+    ```
+    
+  - 安装软件包
+    ```
+    conda install tornado
+    ```
