@@ -1,0 +1,27 @@
+name: libfuse
+category: hpc
+channel: conda-forge
+description: The reference implementation of the Linux FUSE (Filesystem in Userspace) interface
+license: LGPL-2.1-only AND GPL-2.0-only
+homepage: https://github.com/libfuse/libfuse
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n libfuse
+    conda activate libfuse
+    ```
+    
+  - 安装软件包
+    ```
+    conda install libfuse
+    ```

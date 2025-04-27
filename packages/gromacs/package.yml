@@ -1,0 +1,27 @@
+name: gromacs
+category: hpc
+channel: conda-forge
+description: GROMACS is a versatile package to perform molecular dynamics.
+license: LGPL-2.1-or-later
+homepage: https://www.gromacs.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gromacs
+    conda activate gromacs
+    ```
+    
+  - 安装软件包
+    ```
+    conda install gromacs
+    ```

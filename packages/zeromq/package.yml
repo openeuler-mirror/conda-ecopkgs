@@ -1,0 +1,27 @@
+name: zeromq
+category: others
+channel: conda-forge
+description: A high-performance asynchronous messaging library.
+license: MPL-2.0
+homepage: http://zeromq.org
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n zeromq
+    conda activate zeromq
+    ```
+    
+  - 安装软件包
+    ```
+    conda install zeromq
+    ```

@@ -1,0 +1,27 @@
+name: fslpy
+category: hpc
+channel: conda-forge
+description: The FSL Python library
+license: Apache-2.0
+homepage: https://git.fmrib.ox.ac.uk/fsl/fslpy/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n fslpy
+    conda activate fslpy
+    ```
+    
+  - 安装软件包
+    ```
+    conda install fslpy
+    ```

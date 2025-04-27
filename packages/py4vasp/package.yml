@@ -1,0 +1,27 @@
+name: py4vasp
+category: hpc
+channel: conda-forge
+description: Tool for assisting with the analysis and setup of VASP calculations.
+license: Apache-2.0
+homepage: https://vasp.at/py4vasp/latest
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n py4vasp
+    conda activate py4vasp
+    ```
+    
+  - 安装软件包
+    ```
+    conda install py4vasp
+    ```

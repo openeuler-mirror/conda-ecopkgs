@@ -1,0 +1,27 @@
+name: nwchem
+category: hpc
+channel: conda-forge
+description: Open Source High-Performance Computational Chemistry
+license: ECL-2.0
+homepage: https://nwchemgit.github.io
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n nwchem
+    conda activate nwchem
+    ```
+    
+  - 安装软件包
+    ```
+    conda install nwchem
+    ```
