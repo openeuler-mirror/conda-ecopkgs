@@ -1,0 +1,27 @@
+name: apr
+category: others
+channel: conda-forge
+description: Maintains a consistent API with predictable behaviour
+license: Apache-2.0
+homepage: http://apr.apache.org/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n apr
+    conda activate apr
+    ```
+    
+  - 安装软件包
+    ```
+    conda install apr
+    ```

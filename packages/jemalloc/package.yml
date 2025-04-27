@@ -1,0 +1,27 @@
+name: jemalloc
+category: others
+channel: conda-forge
+description: general purpose malloc(3) implementation
+license: BSD-2-Clause
+homepage: http://jemalloc.net
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n jemalloc
+    conda activate jemalloc
+    ```
+    
+  - 安装软件包
+    ```
+    conda install jemalloc
+    ```

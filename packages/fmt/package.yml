@@ -1,0 +1,27 @@
+name: fmt
+category: others
+channel: conda-forge
+description: fmt is an open-source formatting library for C++
+license: MIT
+homepage: https://fmt.dev/latest/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n fmt
+    conda activate fmt
+    ```
+    
+  - 安装软件包
+    ```
+    conda install fmt
+    ```
