@@ -1,0 +1,27 @@
+name: vina
+category: hpc
+channel: conda-forge
+description: Docking and virtual screening program
+license: Apache-2.0
+homepage: http://vina.scripps.edu
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n vina
+    conda activate vina
+    ```
+    
+  - 安装软件包
+    ```
+    conda install vina
+    ```
