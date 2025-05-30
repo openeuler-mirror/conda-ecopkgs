@@ -1,0 +1,27 @@
+name: alphafold
+category: hpc
+channel: phenix-project
+description: Open source code for AlphaFold 2
+license: Apache-2.0
+homepage: https://github.com/google-deepmind/alphafold
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels phenix-project
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n alphafold
+    conda activate alphafold
+    ```
+    
+  - 安装软件包
+    ```
+    conda install alphafold
+    ```
