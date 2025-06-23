@@ -1,0 +1,31 @@
+name: bioconductor-genefilter
+category: hpc
+channel: bioconda
+description: methods for filtering genes from high-throughput experiments
+license: Artistic-2.0
+homepage: https://bioconductor.org/packages/3.20/bioc/html/genefilter.html
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bioconductor-genefilter
+    conda activate bioconductor-genefilter
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bioconductor-genefilter
+    ```
+
+dependency-channels:
+  - conda-forge
