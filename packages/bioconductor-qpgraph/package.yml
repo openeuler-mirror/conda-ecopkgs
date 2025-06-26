@@ -1,0 +1,31 @@
+name: bioconductor-qpgraph
+category: hpc
+channel: bioconda
+description: Estimation of genetic and molecular regulatory networks from high-throughput genomics data
+license: GPL (>= 2)
+homepage: https://bioconductor.org/packages/3.20/bioc/html/qpgraph.html
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bioconductor-qpgraph
+    conda activate bioconductor-qpgraph
+    ```
+    
+  - 安装软件包
+    ```
+    conda install bioconductor-qpgraph
+    ```
+
+dependency-channels:
+  - conda-forge

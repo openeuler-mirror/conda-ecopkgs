@@ -1,0 +1,27 @@
+name: openmm
+category: others
+channel: conda-forge
+description: A high performance toolkit for molecular simulation.
+license: LGPL-3.0-or-later
+homepage: http://openmm.org
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+  
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n openmm
+    conda activate openmm
+    ```
+    
+  - 安装软件包
+    ```
+    conda install openmm
+    ```
