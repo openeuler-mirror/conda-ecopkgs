@@ -1,0 +1,31 @@
+name: gatk4
+category: hpc
+channel: bioconda
+description: Genome Analysis Toolkit (GATK4)
+license: BSD-3-Clause
+homepage: https://www.broadinstitute.org/gatk/
+
+maintainer: baigj
+maintainer-email: guangjiebai@gmail.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gatk4
+    conda activate gatk4
+    ```
+    
+  - 安装软件包
+    ```
+    conda install gatk4
+    ```
+
+dependency-channels:
+  - conda-forge
