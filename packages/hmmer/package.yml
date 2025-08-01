@@ -29,3 +29,10 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: EddyRivasLab/hmmer
+  version_filter: filter;infernal;rc;a;b
+  version_prefix: hmmer-

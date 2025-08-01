@@ -25,3 +25,10 @@ usage: |
     ```
     conda install sphinx
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: sphinx-doc/sphinx
+  version_prefix: v
+  version_filter: rc;b

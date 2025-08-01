@@ -25,3 +25,10 @@ usage: |
     ```
     conda install lua
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: lua/lua
+  version_prefix: v
+  version_filter: beta;alpha;w

@@ -25,3 +25,9 @@ usage: |
     ```
     conda install rocksdb
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: facebook/rocksdb
+  version_prefix: v

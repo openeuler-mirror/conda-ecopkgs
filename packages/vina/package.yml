@@ -25,3 +25,10 @@ usage: |
     ```
     conda install vina
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ccsb-scripps/AutoDock-Vina
+  version_prefix: v
+  version_filter: dev;new;boost

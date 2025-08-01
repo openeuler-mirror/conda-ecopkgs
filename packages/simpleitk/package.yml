@@ -25,3 +25,10 @@ usage: |
     ```
     conda install simpleitk
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: SimpleITK/SimpleITK
+  version_prefix: v
+  version_filter: rc;b;latest

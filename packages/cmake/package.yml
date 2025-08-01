@@ -25,3 +25,10 @@ usage: |
     ```
     conda install cmake
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: Kitware/Cmake
+  version_prefix: v
+  version_filter: rc

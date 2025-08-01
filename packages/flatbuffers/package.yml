@@ -25,3 +25,9 @@ usage: |
     ```
     conda install flatbuffers
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: google/flatbuffers
+  version_prefix: v

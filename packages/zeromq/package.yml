@@ -25,3 +25,10 @@ usage: |
     ```
     conda install zeromq
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: zeromq/libzmq
+  version_prefix: v
+  version_filter: rc

@@ -25,3 +25,9 @@ usage: |
     ```
     conda install scons
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: SCons/scons
+  version_filter: alpha;pre;post;final

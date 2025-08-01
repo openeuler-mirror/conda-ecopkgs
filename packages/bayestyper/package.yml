@@ -29,3 +29,9 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: bioinformatics-centre/BayesTyper
+  version_prefix: v

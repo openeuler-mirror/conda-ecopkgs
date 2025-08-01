@@ -25,3 +25,10 @@ usage: |
     ```
     conda install tornado
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: tornadoweb/tornado
+  version_prefix: v
+  version_filter: b

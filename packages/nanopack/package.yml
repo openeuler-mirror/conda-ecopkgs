@@ -29,3 +29,10 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://raw.githubusercontent.com/wdecoster/nanopack/refs/heads/master/nanopack/version.py
+  regex: (\d+\.\d+\.\d+)
+

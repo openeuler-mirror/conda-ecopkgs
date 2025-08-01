@@ -25,3 +25,9 @@ usage: |
     ```
     conda install django
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: django/django
+  version_filter: rc;a;b
