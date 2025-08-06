@@ -25,3 +25,9 @@ usage: |
     ```
     conda install openh264
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: cisco/openh264
+  version_prefix: v

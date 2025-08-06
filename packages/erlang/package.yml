@@ -25,3 +25,10 @@ usage: |
     ```
     conda install erlang
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: erlang/otp
+  version_prefix: OTP-
+  version_filter: rc

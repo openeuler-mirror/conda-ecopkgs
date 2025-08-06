@@ -25,3 +25,10 @@ usage: |
     ```
     conda install clang
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: llvm/llvm-project
+  version_prefix: llvmorg-
+  version_filter: rc;init

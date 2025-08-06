@@ -25,3 +25,9 @@ usage: |
     ```
     conda install gmp
     ```
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://gmplib.org/
+  regex: GMP\s+(\d+\.\d+\.\d+)

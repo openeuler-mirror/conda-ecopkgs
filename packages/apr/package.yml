@@ -25,3 +25,9 @@ usage: |
     ```
     conda install apr
     ```
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://www.apache.org/dist/apr/
+  regex: apr-(\d+\.\d+\.\d+).tar.bz2

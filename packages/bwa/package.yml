@@ -29,3 +29,10 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: lh3/bwa
+  version_prefix: v
+  version_filter: final;a

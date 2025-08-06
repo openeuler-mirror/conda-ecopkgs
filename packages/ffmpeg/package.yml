@@ -25,3 +25,10 @@ usage: |
     ```
     conda install ffmpeg
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: FFmpeg/Ffmpeg
+  version_prefix: n
+  version_filter: dev

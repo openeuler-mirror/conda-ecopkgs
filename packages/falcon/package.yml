@@ -25,3 +25,9 @@ usage: |
     ```
     conda install falcon
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: falconry/falcon
+  version_filter: post;a;rc;b

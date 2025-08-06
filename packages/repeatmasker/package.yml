@@ -29,3 +29,9 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://www.repeatmasker.org/RepeatMasker/
+  regex: RepeatMasker-(\d+\.\d+\.\d+)

@@ -25,3 +25,9 @@ usage: |
     ```
     conda install geos
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: libgeos/geos
+  version_filter: beta;rc

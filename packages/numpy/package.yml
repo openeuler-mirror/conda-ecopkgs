@@ -25,3 +25,10 @@ usage: |
     ```
     conda install numpy
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: numpy/numpy
+  version_prefix: v
+  version_filter: rc;b;dev

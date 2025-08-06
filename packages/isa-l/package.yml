@@ -25,3 +25,9 @@ usage: |
     ```
     conda install isa-l
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: intel/isa-l
+  version_prefix: v

@@ -25,3 +25,9 @@ usage: |
     ```
     conda install gzip
     ```
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://mirrors.nju.edu.cn/gnu/gzip/
+  regex: gzip-(\d+\.\d+(?:\.\d+)?).tar.gz

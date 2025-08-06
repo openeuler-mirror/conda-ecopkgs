@@ -25,3 +25,9 @@ usage: |
     ```
     conda install leveldb
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: google/leveldb
+  version_prefix: v

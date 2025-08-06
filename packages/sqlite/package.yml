@@ -25,3 +25,10 @@ usage: |
     ```
     conda install sqlite
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: sqlite/sqlite
+  version_prefix: version-
+  version_filter: major;release

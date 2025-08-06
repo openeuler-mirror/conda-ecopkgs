@@ -25,3 +25,9 @@ usage: |
     ```
     conda install tesseract
     ```
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: tesseract-ocr/tesseract
+  version_filter: rc;beta;alpha
