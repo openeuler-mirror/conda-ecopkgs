@@ -30,4 +30,4 @@ upstream:
   backend: GitHub
   version_scheme: RPM
   version_url: SCons/scons
-  version_filter: alpha;pre;post;final
+  version_filter: alpha;pre;post;final;a

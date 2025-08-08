@@ -30,5 +30,5 @@ upstream:
   backend: GitHub
   version_scheme: RPM
   version_url: gromacs/gromacs
-  version_filter: olvars;beta;rc
+  version_filter: olvars;beta;rc;-
   version_prefix: v
