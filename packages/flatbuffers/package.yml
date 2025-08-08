@@ -31,3 +31,4 @@ upstream:
   version_scheme: RPM
   version_url: google/flatbuffers
   version_prefix: v
+  version_filter: -
