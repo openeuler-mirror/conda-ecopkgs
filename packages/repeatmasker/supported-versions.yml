@@ -7,3 +7,6 @@
 24.03-LTS:
     4.1.8:
         - noarch
+24.03-LTS-SP2:
+    4.1.9:
+        - noarch
