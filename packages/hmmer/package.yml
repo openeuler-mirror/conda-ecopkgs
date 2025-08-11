@@ -34,5 +34,5 @@ upstream:
   backend: GitHub
   version_scheme: RPM
   version_url: EddyRivasLab/hmmer
-  version_filter: filter;infernal;rc;a;b;dev
+  version_filter: filter;infernal;rc;dev;a;b;c;d;e;f;g;h;i
   version_prefix: hmmer-
