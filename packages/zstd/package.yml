@@ -31,4 +31,4 @@ upstream:
   version_scheme: RPM
   version_url: facebook/zstd
   version_prefix: Zstandard v
-  version_filter: Chrome Edition;kernel;regression;fuzz
+  version_filter: Chrome Edition;kernel;regression;fuzz;vxyz
