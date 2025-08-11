@@ -16,3 +16,6 @@
         - aarch64
     11.3.0:
         - noarch
+24.03-LTS-SP2:
+    11.8.0:
+        - noarch
