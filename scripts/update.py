@@ -29,6 +29,24 @@ ORIGIN_CODE_URL = (
     "https://gitee.com/openeuler/conda-ecopkgs.git"
 )
 
+
+class NoFloatLoader(yaml.SafeLoader):
+    pass
+
+
+# Remove recognition of float
+for ch in list(NoFloatLoader.yaml_implicit_resolvers):
+    resolvers = [
+        (tag, regexp)
+        for tag, regexp in NoFloatLoader.yaml_implicit_resolvers[ch]
+        if tag != 'tag:yaml.org,2002:float'
+    ]
+    if resolvers:
+        NoFloatLoader.yaml_implicit_resolvers[ch] = resolvers
+    else:
+        del NoFloatLoader.yaml_implicit_resolvers[ch]
+
+
 # transform openEuler version into specifical format
 # e.g., 22.03-lts-sp3 -> oe2203sp3
 def transform_version_format(os_version: str):
@@ -175,36 +193,8 @@ def parse_yaml_data(yaml_file: str) -> Dict[str, Any]:
         return {}
 
     with open(yaml_file, 'r') as f:
-        data = yaml.safe_load(f)
-
-    if not data or not isinstance(data, dict):
-        click.echo(click.style(
-            f"Invalid YAML format in {yaml_file}",
-            fg="red"
-        ))
-        return {}
-    return normalize_yaml_keys(data)
-
-
-def normalize_yaml_keys(data: Any) -> Any:
-    """
-    Recursively convert all dictionary keys to strings.
-
-    Args:
-        data: Loaded YAML data.
-
-    Returns:
-        YAML data with all dict keys as strings.
-    """
-    if isinstance(data, dict):
-        return {
-            str(k): normalize_yaml_keys(v)
-            for k, v in data.items()
-        }
-    elif isinstance(data, list):
-        return [normalize_yaml_keys(item) for item in data]
-    else:
-        return data
+        data = yaml.load(f, Loader=NoFloatLoader)
+    return data
 
 
 def parse_package_info(work_dir: str, package: str) -> Tuple[str, str]:
