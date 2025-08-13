@@ -29,3 +29,10 @@ usage: |
 
 dependency-channels:
   - conda-forge
+
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://sourceforge.net/projects/subread/files/
+  regex: subread-(\d+\.\d+\.\d+)
