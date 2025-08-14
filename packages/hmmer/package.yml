@@ -31,8 +31,7 @@ dependency-channels:
   - conda-forge
 
 upstream:
-  backend: GitHub
+  backend: custom
   version_scheme: RPM
-  version_url: EddyRivasLab/hmmer
-  version_filter: filter;infernal;rc;dev;a;b;c;d;e;f;g;h;i
-  version_prefix: hmmer-
+  version_url: http://hmmer.org/download.html
+  regex: hmmer-(\d+\.\d+(?:\.\d+)?).tar.gz
