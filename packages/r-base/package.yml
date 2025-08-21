@@ -25,3 +25,9 @@ usage: |
     ```
     conda install r-base
     ```
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: https://cran.rstudio.com/doc/manuals/r-release/NEWS.html
+  regex: R\s+(\d+\.\d+\.\d+)
