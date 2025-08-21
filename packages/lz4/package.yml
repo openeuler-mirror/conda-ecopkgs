@@ -25,3 +25,9 @@ usage: |
     ```
     conda install lz4
     ```
+
+upstream:
+  backend: custom
+  version_scheme: RPM
+  version_url: http://www.oberhumer.com/opensource/lzo/download/
+  regex: lzo-(\d+\.\d+).tar.gz
