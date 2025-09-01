@@ -1,12 +1,14 @@
 24.03-LTS-SP1:
-    0.39:
+    '0.39':
         - noarch
 22.03-LTS-SP4:
-    0.39:
+    '0.39':
         - noarch
 24.03-LTS:
-    0.39:
+    '0.39':
         - noarch
 24.03-LTS-SP2:
     0.39:
+        - noarch
+    0.40:
         - noarch
