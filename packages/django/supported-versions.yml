@@ -2,20 +2,22 @@
     4.1.2:
         - x86_64
         - aarch64
-    5.2:
+    '5.2':
         - noarch
 22.03-LTS-SP4:
     4.1.2:
         - x86_64
         - aarch64
-    5.2:
+    '5.2':
         - noarch
 24.03-LTS-SP1:
     4.1.2:
         - x86_64
         - aarch64
-    5.2:
+    '5.2':
         - noarch
 24.03-LTS-SP2:
     5.2.5:
+        - noarch
+    5.2.6:
         - noarch
