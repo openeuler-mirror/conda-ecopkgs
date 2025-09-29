@@ -12,3 +12,5 @@
         - noarch
     2.6.1:
         - noarch
+    2.7.0:
+        - noarch
