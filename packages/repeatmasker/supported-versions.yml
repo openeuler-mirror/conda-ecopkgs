@@ -12,3 +12,5 @@
         - noarch
     4.2.0:
         - noarch
+    4.2.1:
+        - noarch
