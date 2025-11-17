@@ -12,3 +12,5 @@
         - noarch
     3.24.0:
         - noarch
+    3.25.0:
+        - noarch
