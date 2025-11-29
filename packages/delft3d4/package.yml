@@ -13,6 +13,7 @@ usage: |
   - 添加Channel
     ```
     conda config --add channels gbrey
+    conda config --add channels conda-forge
     ```
 
   - 创建隔离环境(可选)
@@ -28,3 +29,4 @@ usage: |
 
 dependency-channels:
   - gbrey
+  - conda-forge
