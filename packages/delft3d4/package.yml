@@ -1,0 +1,30 @@
+name: delft3d4
+category: others
+channel: gbrey
+description: 3D modeling suite to investigate hydrodynamics, sediment transport and morphology and water quality for fluvial, estuarine and coastal environments.
+license: MIT
+homepage: https://github.com/Deltares/Delft3D
+
+maintainer: zhihang161013
+maintainer-email: zhihang161013@outlook.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels gbrey
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n delft3d4
+    conda activate delft3d4
+    ```
+    
+  - 安装软件包
+    ```
+    conda install delft3d4
+    ```
+
+dependency-channels:
+  - gbrey
