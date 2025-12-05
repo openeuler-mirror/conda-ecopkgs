@@ -12,3 +12,5 @@
         - noarch
     8.3.0:
         - noarch
+    9.0.4:
+        - noarch
