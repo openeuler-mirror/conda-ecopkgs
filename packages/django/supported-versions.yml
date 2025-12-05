@@ -27,3 +27,5 @@
         - noarch
     5.2.9:
         - noarch
+    6.0:
+        - noarch
