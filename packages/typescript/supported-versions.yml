@@ -12,3 +12,5 @@
         - noarch
     5.9.3:
         - noarch
+    6.0.2:
+        - noarch
