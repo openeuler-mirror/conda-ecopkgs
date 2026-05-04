@@ -14,3 +14,5 @@
         - noarch
     9.0.4:
         - noarch
+    9.1.0:
+        - noarch
