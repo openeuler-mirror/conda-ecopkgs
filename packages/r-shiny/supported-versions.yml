@@ -14,3 +14,5 @@
         - noarch
     1.12.1:
         - noarch
+    1.13.0:
+        - noarch
