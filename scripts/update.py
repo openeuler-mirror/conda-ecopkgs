@@ -23,10 +23,10 @@ UPDATE_CODE_DIR = "update"
 ORIGIN_CODE_DIR = "origin"
 
 REPOSITORY_REQUEST_URL = (
-    "https://gitee.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
+    "https://api.gitcode.com/api/v5/repos/openeuler/conda-ecopkgs/pulls"
 )
 ORIGIN_CODE_URL = (
-    "https://gitee.com/openeuler/conda-ecopkgs.git"
+    "https://gitcode.com/openeuler/conda-ecopkgs.git"
 )
 
 
@@ -336,20 +336,20 @@ def pull_origin_code(work_dir):
     return 0
 
 
-def _request(url: str):
+def _request(url: str, headers: dict = None):
     cnt = 0
     response = None
     while (not response) and (cnt < 20):
-        response = requests.get(url=url)
+        response = requests.get(url=url, headers=headers)
         cnt += 1
     return response
 
 
 def get_change_files(pr_id) -> List[str]:
     change_files = []
-    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}/files?access_token=" + \
-          os.environ["GITEE_API_TOKEN"]
-    response = _request(url=url)
+    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}/files"
+    headers = {"private-token": os.environ["GITCODE_API_TOKEN"]}
+    response = _request(url=url, headers=headers)
     # check status code
     if response.status_code == 200:
         files = response.json()
@@ -365,10 +365,9 @@ def get_change_files(pr_id) -> List[str]:
 
 
 def get_source_code(pr_id) -> str:
-    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}?access_token=" + \
-          os.environ["GITEE_API_TOKEN"]
-
-    response = _request(url=url)
+    url = f"{REPOSITORY_REQUEST_URL}/{pr_id}"
+    headers = {"private-token": os.environ["GITCODE_API_TOKEN"]}
+    response = _request(url=url, headers=headers)
     if response.status_code != 200:
         raise RuntimeError(f"Request failed with status code:",
                            f"{response.status_code}, url: {url}")
