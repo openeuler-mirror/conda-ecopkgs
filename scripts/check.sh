@@ -22,7 +22,7 @@ docker system df
 echo "清理完成!"
 
 rm -rf conda-ecopkgs
-git clone https://gitee.com/openeuler/conda-ecopkgs.git
+git clone https://gitcode.com/openeuler/conda-ecopkgs.git
 cd conda-ecopkgs
 
 pip3 install click requests
