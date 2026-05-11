@@ -1,0 +1,37 @@
+name: simde
+category: others
+channel: conda-forge
+description: Implementations of SIMD instruction sets for systems which don't natively support them.
+license: MIT
+homepage: https://github.com/simd-everywhere/simde
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n simde
+    conda activate simde
+    ```
+
+  - 安装软件包
+    ```
+    conda install simde
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: simd-everywhere/simde
+  version_prefix: v
+  version_filter: rc

@@ -1,0 +1,37 @@
+name: su2
+category: hpc
+channel: conda-forge
+description: An Open-Source Suite for Multiphysics Simulation and Design.
+license: LGPL-2.1-or-later
+homepage: https://su2code.github.io/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n su2
+    conda activate su2
+    ```
+
+  - 安装软件包
+    ```
+    conda install su2
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: su2code/SU2
+  version_prefix: v
+  version_filter: rc

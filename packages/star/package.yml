@@ -1,0 +1,37 @@
+name: star
+category: hpc
+channel: bioconda
+description: An RNA-seq read aligner for mapping reads to a reference genome.
+license: GPL-3.0-only
+homepage: https://github.com/alexdobin/STAR
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n star
+    conda activate star
+    ```
+
+  - 安装软件包
+    ```
+    conda install star
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: alexdobin/STAR
+  version_filter: rc
