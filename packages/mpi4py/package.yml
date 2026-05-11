@@ -2,7 +2,7 @@ name: mpi4py
 category: others
 channel: conda-forge
 description: MPI for Python provides Python bindings for the Message Passing Interface (MPI) standard, allowing Python scripts to exploit multiple processors on workstations, clusters, and supercomputers.
-license: BSD-2-Clause
+license: BSD-3-Clause
 homepage: https://mpi4py.readthedocs.io/
 
 maintainer: zhangxinyuehfad
