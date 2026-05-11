@@ -1,0 +1,37 @@
+name: llama.cpp
+category: others
+channel: conda-forge
+description: Server example and tools for llama.cpp, a C++ inference engine for large language models.
+license: MIT
+homepage: https://github.com/ggerganov/llama.cpp
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n llama.cpp
+    conda activate llama.cpp
+    ```
+
+  - 安装软件包
+    ```
+    conda install llama.cpp
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ggerganov/llama.cpp
+  version_prefix: b
+  version_filter: rc
