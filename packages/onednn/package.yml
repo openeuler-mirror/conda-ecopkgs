@@ -1,0 +1,37 @@
+name: onednn
+category: others
+channel: conda-forge
+description: oneAPI Deep Neural Network Library (oneDNN) is an open-source cross-platform performance library of basic building blocks for deep learning applications.
+license: Apache-2.0
+homepage: https://oneapi-src.github.io/oneDNN/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n onednn
+    conda activate onednn
+    ```
+
+  - 安装软件包
+    ```
+    conda install onednn
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: oneapi-src/oneDNN
+  version_prefix: v
+  version_filter: rc
