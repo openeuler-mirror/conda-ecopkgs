@@ -1,0 +1,37 @@
+name: gsl
+category: hpc
+channel: conda-forge
+description: The GNU Scientific Library (GSL) is a numerical library for C and C++ programmers. It is free software under the GNU General Public License. The library provides a wide range of mathematical routines such as random number generators, special functions, and least-squares fitting.
+license: GPL-3.0-or-later
+homepage: https://www.gnu.org/software/gsl/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gsl
+    conda activate gsl
+    ```
+
+  - 安装软件包
+    ```
+    conda install gsl
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ampl/gsl
+  version_prefix: v
+  version_filter: rc
