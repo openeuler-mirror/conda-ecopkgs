@@ -1,0 +1,37 @@
+name: wgrib2
+category: hpc
+channel: conda-forge
+description: Utility to read and write GRIB2 files used in numerical weather prediction.
+license: GPL-2.0-or-later
+homepage: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n wgrib2
+    conda activate wgrib2
+    ```
+
+  - 安装软件包
+    ```
+    conda install wgrib2
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: NOAA-EMC/NCEPLIBS-wgrib2
+  version_prefix: v
+  version_filter: rc;cmake;nco
