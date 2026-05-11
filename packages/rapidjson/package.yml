@@ -3,7 +3,7 @@ category: others
 channel: conda-forge
 description: A fast JSON parser/generator for C++ with both SAX/DOM style API.
 license: MIT
-homepage: http://rapidjson.org/
+homepage: https://github.com/Tencent/rapidjson
 
 maintainer: zhangxinyuehfad
 maintainer-email: starmoon_zhang@163.com
