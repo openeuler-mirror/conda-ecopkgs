@@ -1,0 +1,37 @@
+name: openssl
+category: others
+channel: conda-forge
+description: OpenSSL is a robust, commercial-grade, full-featured Open Source Toolkit for the Transport Layer Security (TLS) protocol.
+license: Apache-2.0
+homepage: https://www.openssl.org
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n openssl
+    conda activate openssl
+    ```
+
+  - 安装软件包
+    ```
+    conda install openssl
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: openssl/openssl
+  version_prefix: openssl-
+  version_filter: alpha;beta

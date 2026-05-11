@@ -1,0 +1,37 @@
+name: petsc
+category: others
+channel: conda-forge
+description: PETSc is a suite of data structures and routines for the scalable (parallel) solution of scientific applications modeled by partial differential equations. It supports MPI and GPUs through CUDA, HIP, Kokkos, or OpenCL, as well as hybrid MPI-GPU parallelism.
+license: BSD-2-Clause
+homepage: https://petsc.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n petsc
+    conda activate petsc
+    ```
+
+  - 安装软件包
+    ```
+    conda install petsc
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: petsc/petsc
+  version_prefix: v
+  version_filter: rc
