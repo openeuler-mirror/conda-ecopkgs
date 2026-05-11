@@ -1,0 +1,38 @@
+name: bedtools
+category: hpc
+channel: bioconda
+description: A powerful toolset for genome arithmetic.
+license: MIT
+homepage: https://bedtools.readthedocs.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bedtools
+    conda activate bedtools
+    ```
+
+  - 安装软件包
+    ```
+    conda install bedtools
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: arq5x/bedtools2
+  version_prefix: v
+  version_filter: rc

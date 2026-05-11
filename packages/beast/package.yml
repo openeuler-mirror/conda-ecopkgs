@@ -1,0 +1,38 @@
+name: beast
+category: hpc
+channel: bioconda
+description: BEAST is a cross-platform program for Bayesian analysis of molecular sequences using MCMC.
+license: LGPL-2.1-or-later
+homepage: https://beast.community
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n beast
+    conda activate beast
+    ```
+
+  - 安装软件包
+    ```
+    conda install beast
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: beast-dev/beast-mcmc
+  version_prefix: v
+  version_filter: rc;beta
