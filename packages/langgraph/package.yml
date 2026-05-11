@@ -1,0 +1,36 @@
+name: langgraph
+category: others
+channel: conda-forge
+description: Building stateful, multi-actor applications with LLMs.
+license: MIT
+homepage: https://langchain-ai.github.io/langgraph/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n langgraph
+    conda activate langgraph
+    ```
+
+  - 安装软件包
+    ```
+    conda install langgraph
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: langchain-ai/langgraph
+  version_filter: rc;a

@@ -1,0 +1,35 @@
+name: kobas
+category: hpc
+channel: bioconda
+description: KEGG Orthology Based Annotation System for annotating genes and proteins using KEGG orthology data.
+license: Other
+homepage: http://kobas.cbi.pku.edu.cn
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n kobas
+    conda activate kobas
+    ```
+
+  - 安装软件包
+    ```
+    conda install kobas
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: custom
+  version_url: http://kobas.cbi.pku.edu.cn
