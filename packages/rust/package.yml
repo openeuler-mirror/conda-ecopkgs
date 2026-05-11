@@ -1,0 +1,36 @@
+name: rust
+category: others
+channel: conda-forge
+description: The Rust programming language compiler (rustc) and documentation utilities rustdoc.
+license: MIT AND Apache-2.0
+homepage: https://www.rust-lang.org
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n rust
+    conda activate rust
+    ```
+
+  - 安装软件包
+    ```
+    conda install rust
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: rust-lang/rust
+  version_filter: beta;nightly

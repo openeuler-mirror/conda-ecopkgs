@@ -1,0 +1,36 @@
+name: siesta
+category: hpc
+channel: conda-forge
+description: A first-principles materials simulation code using DFT for electronic structure calculations and ab initio molecular dynamics.
+license: GPL-3.0-only
+homepage: https://siesta-project.org/siesta/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n siesta
+    conda activate siesta
+    ```
+
+  - 安装软件包
+    ```
+    conda install siesta
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitLab
+  version_scheme: RPM
+  version_url: siesta-project/siesta
+  version_filter: rc;alpha
