@@ -3,7 +3,7 @@ category: hpc
 channel: bioconda
 description: Tools for dealing with SAM, BAM and CRAM files.
 license: MIT
-homepage: http://www.htslib.org/
+homepage: https://github.com/samtools/samtools
 
 maintainer: zhangxinyuehfad
 maintainer-email: starmoon_zhang@163.com
