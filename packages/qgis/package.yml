@@ -1,0 +1,37 @@
+name: qgis
+category: others
+channel: conda-forge
+description: A free and open source Geographic Information System (GIS).
+license: GPL-2.0-only
+homepage: http://qgis.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n qgis
+    conda activate qgis
+    ```
+
+  - 安装软件包
+    ```
+    conda install qgis
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: qgis/QGIS
+  version_prefix: final-
+  version_filter: rc
