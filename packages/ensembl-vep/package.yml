@@ -1,0 +1,38 @@
+name: ensembl-vep
+category: hpc
+channel: bioconda
+description: The VEP determines the effect of your variants on genes, transcripts, and protein sequence, as well as regulatory regions.
+license: Apache-2.0
+homepage: https://www.ensembl.org/info/docs/tools/vep/index.html
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n ensembl-vep
+    conda activate ensembl-vep
+    ```
+
+  - 安装软件包
+    ```
+    conda install ensembl-vep
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: Ensembl/ensembl-vep
+  version_prefix: release/
+  version_filter: rc

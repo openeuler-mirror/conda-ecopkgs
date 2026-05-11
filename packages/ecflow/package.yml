@@ -1,0 +1,36 @@
+name: ecflow
+category: hpc
+channel: conda-forge
+description: ECMWF ecFlow - a workflow management system for running large numbers of jobs at operational centers.
+license: Apache-2.0
+homepage: https://ecflow.readthedocs.io/en/latest/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n ecflow
+    conda activate ecflow
+    ```
+
+  - 安装软件包
+    ```
+    conda install ecflow
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ecmwf/ecflow
+  version_filter: rc
