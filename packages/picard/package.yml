@@ -1,0 +1,37 @@
+name: picard
+category: hpc
+channel: bioconda
+description: Picard is a set of command line tools for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF. These file formats are defined in the Hts-specs repository.
+license: MIT
+homepage: https://broadinstitute.github.io/picard/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n picard
+    conda activate picard
+    ```
+
+  - 安装软件包
+    ```
+    conda install picard
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: broadinstitute/picard
+  version_filter: rc;BCM;bc_
