@@ -1,0 +1,37 @@
+name: prottest3
+category: hpc
+channel: hcc
+description: ProtTest is a bioinformatic tool for the selection of best-fit models of aminoacid replacement for the data at hand.
+license: GPL-2.0-or-later
+homepage: https://github.com/ddarriba/prottest3
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels hcc
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n prottest3
+    conda activate prottest3
+    ```
+
+  - 安装软件包
+    ```
+    conda install prottest3
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ddarriba/prottest3
+  version_filter: rc

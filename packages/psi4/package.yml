@@ -1,0 +1,37 @@
+name: psi4
+category: hpc
+channel: conda-forge
+description: Open-Source Quantum Chemistry - an electronic structure package in C++ driven by Python.
+license: LGPL-3.0-only
+homepage: http://psicode.org
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n psi4
+    conda activate psi4
+    ```
+
+  - 安装软件包
+    ```
+    conda install psi4
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: psi4/psi4
+  version_prefix: v
+  version_filter: rc;alpha;beta
