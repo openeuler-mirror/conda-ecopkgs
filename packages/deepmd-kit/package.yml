@@ -1,0 +1,37 @@
+name: deepmd-kit
+category: hpc
+channel: conda-forge
+description: A deep learning package for many-body potential energy representation and molecular dynamics.
+license: LGPL-3.0-only
+homepage: https://github.com/deepmodeling/deepmd-kit
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n deepmd-kit
+    conda activate deepmd-kit
+    ```
+
+  - 安装软件包
+    ```
+    conda install deepmd-kit
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: deepmodeling/deepmd-kit
+  version_prefix: v
+  version_filter: rc;alpha;beta

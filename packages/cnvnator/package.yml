@@ -1,0 +1,38 @@
+name: cnvnator
+category: hpc
+channel: bioconda
+description: Tool for calling copy number variations using read depth analysis.
+license: MIT
+homepage: https://github.com/abyzovlab/CNVnator
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n cnvnator
+    conda activate cnvnator
+    ```
+
+  - 安装软件包
+    ```
+    conda install cnvnator
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: abyzovlab/CNVnator
+  version_prefix: v
+  version_filter: rc

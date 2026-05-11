@@ -1,0 +1,36 @@
+name: daft
+category: others
+channel: conda-forge
+description: High-performance data engine for AI and multimodal workloads. Process images, audio, video, and structured data at any scale.
+license: Apache-2.0
+homepage: https://daft.ai
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n daft
+    conda activate daft
+    ```
+
+  - 安装软件包
+    ```
+    conda install daft
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: Eventual-Inc/daft
+  version_prefix: v
