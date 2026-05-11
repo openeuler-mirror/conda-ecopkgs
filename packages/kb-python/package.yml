@@ -1,0 +1,38 @@
+name: kb-python
+category: hpc
+channel: bioconda
+description: A wrapper for the kallisto | bustools workflow for single-cell RNA-seq pre-processing.
+license: BSD-2-Clause
+homepage: https://github.com/pachterlab/kb_python
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n kb-python
+    conda activate kb-python
+    ```
+
+  - 安装软件包
+    ```
+    conda install kb-python
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: pachterlab/kb_python
+  version_prefix: v
+  version_filter: rc
