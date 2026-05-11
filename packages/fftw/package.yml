@@ -1,0 +1,37 @@
+name: fftw
+category: others
+channel: conda-forge
+description: FFTW is a C subroutine library for computing the discrete Fourier transform (DFT) in one or more dimensions, of arbitrary input size, and of both real and complex data (as well as of even/odd data, i.e. the discrete cosine/sine transforms or DCT/DST).
+license: GPL-2.0-or-later
+homepage: http://www.fftw.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n fftw
+    conda activate fftw
+    ```
+
+  - 安装软件包
+    ```
+    conda install fftw
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: FFTW/fftw3
+  version_prefix: fftw-
+  version_filter: rc
