@@ -1,0 +1,37 @@
+name: mfem
+category: hpc
+channel: conda-forge
+description: MFEM is a free, lightweight, scalable C++ library for finite element methods. Its goal is to enable research and development of scalable finite element discretization and solver algorithms through general finite element abstractions, and to support unstructured mesh adaptivity.
+license: BSD-3-Clause
+homepage: https://mfem.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mfem
+    conda activate mfem
+    ```
+
+  - 安装软件包
+    ```
+    conda install mfem
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: mfem/mfem
+  version_prefix: v
+  version_filter: rc

@@ -1,0 +1,36 @@
+name: mpi4py
+category: others
+channel: conda-forge
+description: MPI for Python provides Python bindings for the Message Passing Interface (MPI) standard, allowing Python scripts to exploit multiple processors on workstations, clusters, and supercomputers.
+license: BSD-3-Clause
+homepage: https://mpi4py.readthedocs.io/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n mpi4py
+    conda activate mpi4py
+    ```
+
+  - 安装软件包
+    ```
+    conda install mpi4py
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: mpi4py/mpi4py
+  version_filter: rc
