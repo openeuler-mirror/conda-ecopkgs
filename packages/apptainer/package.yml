@@ -1,0 +1,37 @@
+name: apptainer
+category: others
+channel: conda-forge
+description: Apptainer is an open source container platform designed to be simple, fast, and secure. It is optimized for EPC and HPC environments where administrators do not want to grant users root access.
+license: BSD-3-Clause
+homepage: https://apptainer.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n apptainer
+    conda activate apptainer
+    ```
+
+  - 安装软件包
+    ```
+    conda install apptainer
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: apptainer/apptainer
+  version_prefix: v
+  version_filter: rc

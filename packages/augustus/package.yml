@@ -1,0 +1,38 @@
+name: augustus
+category: hpc
+channel: bioconda
+description: AUGUSTUS is a gene prediction program for eukaryotes written for both ab initio and evidence-based prediction.
+license: Artistic-1.0
+homepage: http://bioinf.uni-greifswald.de/augustus/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n augustus
+    conda activate augustus
+    ```
+
+  - 安装软件包
+    ```
+    conda install augustus
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: Gaius-Augustus/Augustus
+  version_prefix: v
+  version_filter: rc

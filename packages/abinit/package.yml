@@ -1,0 +1,36 @@
+name: abinit
+category: hpc
+channel: conda-forge
+description: ABINIT is a software suite to calculate the optical, mechanical, vibrational, and other observable properties of materials based on density functional theory.
+license: GPL-3.0-only
+homepage: https://www.abinit.org
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n abinit
+    conda activate abinit
+    ```
+
+  - 安装软件包
+    ```
+    conda install abinit
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: abinit/abinit
+  version_filter: rc

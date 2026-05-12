@@ -1,0 +1,38 @@
+name: bcftools
+category: hpc
+channel: bioconda
+description: BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF.
+license: MIT
+homepage: https://samtools.github.io/bcftools/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bcftools
+    conda activate bcftools
+    ```
+
+  - 安装软件包
+    ```
+    conda install bcftools
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: samtools/bcftools
+  version_prefix: v
+  version_filter: rc
