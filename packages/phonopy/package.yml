@@ -1,0 +1,37 @@
+name: phonopy
+category: hpc
+channel: conda-forge
+description: Phonopy is an open source package for phonon calculations at harmonic and quasi-harmonic levels.
+license: BSD-3-Clause
+homepage: https://phonopy.github.io/phonopy/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n phonopy
+    conda activate phonopy
+    ```
+
+  - 安装软件包
+    ```
+    conda install phonopy
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: phonopy/phonopy
+  version_prefix: v
+  version_filter: rc

@@ -1,0 +1,37 @@
+name: plumed
+category: others
+channel: conda-forge
+description: PLUMED is an open-source, community-developed library that provides a wide range of different free energy methods, collective variables, and analysis tools. It works as a plugin with many popular molecular dynamics codes.
+license: LGPL-3.0-or-later
+homepage: https://www.plumed.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n plumed
+    conda activate plumed
+    ```
+
+  - 安装软件包
+    ```
+    conda install plumed
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: plumed/plumed2
+  version_prefix: v
+  version_filter: rc

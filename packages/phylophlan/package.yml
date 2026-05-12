@@ -1,0 +1,37 @@
+name: phylophlan
+category: hpc
+channel: bioconda
+description: Precise phylogenetic analysis of microbial isolates and genomes from metagenomes.
+license: MIT
+homepage: https://github.com/biobakery/phylophlan
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n phylophlan
+    conda activate phylophlan
+    ```
+
+  - 安装软件包
+    ```
+    conda install phylophlan
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: biobakery/phylophlan
+  version_filter: rc
