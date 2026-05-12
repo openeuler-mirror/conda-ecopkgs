@@ -1,0 +1,37 @@
+name: simdjson
+category: others
+channel: conda-forge
+description: The simdjson library uses commonly available SIMD instructions and microparallel algorithms to parse JSON 2.5x faster than anything else out there.
+license: Apache-2.0
+homepage: https://simdjson.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n simdjson
+    conda activate simdjson
+    ```
+
+  - 安装软件包
+    ```
+    conda install simdjson
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: simdjson/simdjson
+  version_prefix: v
+  version_filter: rc
