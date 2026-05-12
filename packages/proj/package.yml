@@ -1,0 +1,36 @@
+name: proj
+category: others
+channel: conda-forge
+description: PROJ is a generic coordinate transformation software that transforms geospatial coordinates from one coordinate reference system (CRS) to another.
+license: MIT
+homepage: https://proj.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n proj
+    conda activate proj
+    ```
+
+  - 安装软件包
+    ```
+    conda install proj
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: OSGeo/PROJ
+  version_filter: rc
