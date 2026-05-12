@@ -1,0 +1,38 @@
+name: bowtie2
+category: hpc
+channel: bioconda
+description: A fast and sensitive gapped read aligner.
+license: GPL-3.0-or-later
+homepage: https://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n bowtie2
+    conda activate bowtie2
+    ```
+
+  - 安装软件包
+    ```
+    conda install bowtie2
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: BenLangmead/bowtie2
+  version_prefix: v
+  version_filter: rc

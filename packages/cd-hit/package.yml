@@ -1,0 +1,38 @@
+name: cd-hit
+category: hpc
+channel: bioconda
+description: Clusters and compares protein or nucleotide sequences.
+license: GPL-2.0-only
+homepage: https://github.com/weizhongli/cdhit
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n cd-hit
+    conda activate cd-hit
+    ```
+
+  - 安装软件包
+    ```
+    conda install cd-hit
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: weizhongli/cdhit
+  version_prefix: V
+  version_filter: rc
