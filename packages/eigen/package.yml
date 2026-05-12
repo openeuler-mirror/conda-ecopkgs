@@ -1,0 +1,36 @@
+name: eigen
+category: others
+channel: conda-forge
+description: Eigen is a C++ template library for linear algebra including matrices, vectors, numerical solvers, and related algorithms. It is versatile, fast, elegant, and supports many platforms.
+license: MPL-2.0
+homepage: http://eigen.tuxfamily.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n eigen
+    conda activate eigen
+    ```
+
+  - 安装软件包
+    ```
+    conda install eigen
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitLab
+  version_scheme: RPM
+  version_url: libeigen/eigen
+  version_filter: rc;nightly;starting_new;before-
