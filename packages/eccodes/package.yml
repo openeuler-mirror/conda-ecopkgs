@@ -1,0 +1,36 @@
+name: eccodes
+category: hpc
+channel: conda-forge
+description: ECMWF ecCodes - a software library for encoding and decoding meteorological data formats.
+license: Apache-2.0
+homepage: https://confluence.ecmwf.int/display/ECC/ecCodes+Home
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n eccodes
+    conda activate eccodes
+    ```
+
+  - 安装软件包
+    ```
+    conda install eccodes
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: ecmwf/eccodes
+  version_filter: rc
