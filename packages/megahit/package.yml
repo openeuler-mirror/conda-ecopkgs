@@ -1,0 +1,38 @@
+name: megahit
+category: hpc
+channel: bioconda
+description: An ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph.
+license: GPL-3.0-only
+homepage: https://github.com/voutcn/megahit
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n megahit
+    conda activate megahit
+    ```
+
+  - 安装软件包
+    ```
+    conda install megahit
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: voutcn/megahit
+  version_prefix: v
+  version_filter: rc
