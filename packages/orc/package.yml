@@ -1,0 +1,37 @@
+name: orc
+category: others
+channel: conda-forge
+description: The smallest, fastest columnar storage for Hadoop workloads. C++ libraries for Apache ORC.
+license: Apache-2.0
+homepage: https://orc.apache.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n orc
+    conda activate orc
+    ```
+
+  - 安装软件包
+    ```
+    conda install orc
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: apache/orc
+  version_prefix: v
+  version_filter: rc
