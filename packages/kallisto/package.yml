@@ -1,0 +1,38 @@
+name: kallisto
+category: hpc
+channel: bioconda
+description: Quantifying abundances of transcripts from RNA-Seq data using high-throughput sequencing reads.
+license: BSD-2-Clause
+homepage: https://pachterlab.github.io/kallisto
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n kallisto
+    conda activate kallisto
+    ```
+
+  - 安装软件包
+    ```
+    conda install kallisto
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: pachterlab/kallisto
+  version_prefix: v
+  version_filter: rc
