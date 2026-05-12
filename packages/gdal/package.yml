@@ -1,0 +1,37 @@
+name: gdal
+category: others
+channel: conda-forge
+description: GDAL is a translator library for raster and vector geospatial data formats. As a library, it presents a single raster abstract data model and single vector abstract data model to the calling application for all supported formats.
+license: MIT
+homepage: https://www.gdal.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gdal
+    conda activate gdal
+    ```
+
+  - 安装软件包
+    ```
+    conda install gdal
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: OSGeo/GDAL
+  version_prefix: v
+  version_filter: rc

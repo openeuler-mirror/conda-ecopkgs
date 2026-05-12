@@ -1,0 +1,37 @@
+name: gperftools
+category: others
+channel: conda-forge
+description: gperftools is a collection of a high-performance multi-threaded malloc() implementation, plus some pretty nifty performance analysis tools. It includes a thread-caching malloc (tcmalloc), a heap-checker, a heap-profiler, and a CPU-profiler.
+license: BSD-3-Clause
+homepage: https://github.com/gperftools/gperftools
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n gperftools
+    conda activate gperftools
+    ```
+
+  - 安装软件包
+    ```
+    conda install gperftools
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: gperftools/gperftools
+  version_prefix: gperftools-
+  version_filter: rc
