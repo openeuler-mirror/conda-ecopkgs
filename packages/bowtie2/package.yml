@@ -35,4 +35,4 @@ upstream:
   version_scheme: RPM
   version_url: BenLangmead/bowtie2
   version_prefix: v
-  version_filter: rc
+  version_filter: rc,beta
