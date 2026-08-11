@@ -1,0 +1,36 @@
+name: obspy
+category: others
+channel: conda-forge
+description: ObsPy is an open-source project dedicated to provide a Python framework for processing seismological data. It provides parsers for common file formats, clients to access data centers and seismological signal processing routines which allow the manipulation of seismological time series.
+license: LGPL-3.0-or-later
+homepage: https://www.obspy.org/
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n obspy
+    conda activate obspy
+    ```
+
+  - 安装软件包
+    ```
+    conda install obspy
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: obspy/obspy
+  version_filter: rc
