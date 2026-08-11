@@ -1,0 +1,37 @@
+name: rapidjson
+category: others
+channel: conda-forge
+description: A fast JSON parser/generator for C++ with both SAX/DOM style API.
+license: MIT
+homepage: https://github.com/Tencent/rapidjson
+
+maintainer: zhangxinyuehfad
+maintainer-email: starmoon_zhang@163.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n rapidjson
+    conda activate rapidjson
+    ```
+
+  - 安装软件包
+    ```
+    conda install rapidjson
+    ```
+
+dependency-channels:
+  - conda-forge
+
+upstream:
+  backend: GitHub
+  version_scheme: RPM
+  version_url: Tencent/rapidjson
+  version_prefix: v
+  version_filter: rc
