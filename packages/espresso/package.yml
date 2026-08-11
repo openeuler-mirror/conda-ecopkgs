@@ -35,4 +35,4 @@ upstream:
   version_scheme: RPM
   version_url: Xinglab/espresso
   version_prefix: v
-  version_filter: rc
+  version_filter: rc;beta
