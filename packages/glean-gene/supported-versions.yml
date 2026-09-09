@@ -10,3 +10,6 @@
 24.03-LTS-SP2:
     1.0.1:
         - noarch
+24.03-LTS-SP4:
+    1.0.1:
+        - noarch
