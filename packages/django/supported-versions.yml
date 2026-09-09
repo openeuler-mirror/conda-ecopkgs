@@ -29,3 +29,6 @@
         - noarch
     6.0:
         - noarch
+24.03-LTS-SP4:
+    6.1:
+        - noarch
