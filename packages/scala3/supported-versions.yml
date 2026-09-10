@@ -12,3 +12,6 @@
         - noarch
     3.7.4:
         - noarch
+24.03-LTS-SP4:
+    3.7.4:
+        - noarch
