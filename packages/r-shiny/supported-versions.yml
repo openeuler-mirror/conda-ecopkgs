@@ -16,3 +16,6 @@
         - noarch
     1.13.0:
         - noarch
+24.03-LTS-SP4:
+    1.14.0:
+        - noarch
