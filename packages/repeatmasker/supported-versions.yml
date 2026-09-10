@@ -18,3 +18,6 @@
         - noarch
     4.2.3:
         - noarch
+24.03-LTS-SP4:
+    4.2.4:
+        - noarch
