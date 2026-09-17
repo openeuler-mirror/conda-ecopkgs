@@ -1,0 +1,26 @@
+name: pyrosetta
+category: hpc
+channel: https://conda.graylab.jhu.edu
+description: Python binding for Rosetta, biomolecular modeling software package
+license: PyRosetta license
+homepage: http://www.pyrosetta.org
+
+maintainer: fdecad
+maintainer-email: fdecad@outlook.com
+
+usage: |
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n pyrosetta
+    conda activate pyrosetta
+    ```
+
+  - 安装软件包
+    ```
+    conda install -c https://conda.graylab.jhu.edu -c conda-forge pyrosetta
+    ```
+
+dependency-channels:
+  - https://conda.graylab.jhu.edu
+  - conda-forge
