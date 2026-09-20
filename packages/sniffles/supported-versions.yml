@@ -4,3 +4,5 @@
 24.03-LTS-SP4:
     2.8.0:
         - noarch
+    2.8.1:
+        - noarch
