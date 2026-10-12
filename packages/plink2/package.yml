@@ -1,0 +1,31 @@
+name: plink2
+category: hpc
+channel: bioconda
+description: PLINK 2.0 is a whole genome association analysis toolset.
+license: GPL-3.0
+homepage: https://www.cog-genomics.org/plink/2.0/
+
+maintainer: fdecad
+maintainer-email: fdecad@outlook.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels bioconda
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n plink2
+    conda activate plink2
+    ```
+
+  - 安装软件包
+    ```
+    conda install plink2
+    ```
+
+dependency-channels:
+  - conda-forge
