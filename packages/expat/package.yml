@@ -1,6 +1,6 @@
 name: expat
 category: others
-channel: conda-forge
+channel: main
 description: Expat XML parser library in C
 license: MIT
 homepage: http://expat.sourceforge.net/
