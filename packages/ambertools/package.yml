@@ -1,0 +1,30 @@
+name: ambertools
+category: hpc
+channel: conda-forge
+description: AmberTools is a set of programs for biomolecular simulation and analysis.
+license: GPL-3.0
+homepage: https://ambermd.org/AmberTools.php
+
+maintainer: fdecad
+maintainer-email: fdecad@outlook.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n ambertools
+    conda activate ambertools
+    ```
+
+  - 安装软件包
+    ```
+    conda install ambertools
+    ```
+
+dependency-channels:
+  - conda-forge
