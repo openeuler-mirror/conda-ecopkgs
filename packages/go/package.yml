@@ -1,0 +1,30 @@
+name: go
+category: others
+channel: conda-forge
+description: The Go programming language compiler and toolchain.
+license: BSD-3-Clause
+homepage: https://go.dev
+
+maintainer: fdecad
+maintainer-email: fdecad@outlook.com
+
+usage: |
+
+  - 添加Channel
+    ```
+    conda config --add channels conda-forge
+    ```
+
+  - 创建隔离环境(可选)
+    ```
+    conda create -n go
+    conda activate go
+    ```
+
+  - 安装软件包
+    ```
+    conda install go
+    ```
+
+dependency-channels:
+  - conda-forge
