@@ -4,3 +4,5 @@
 24.03-LTS-SP4:
     116.2:
         - noarch
+    116.3:
+        - noarch
