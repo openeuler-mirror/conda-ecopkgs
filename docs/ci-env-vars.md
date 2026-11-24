@@ -25,8 +25,8 @@
 | `TEST_ARCH` | `aarch64` | 允许执行测试用例并产出报告的节点架构。CI 在 x86/ARM 各有一个 job，只有匹配该架构的节点跑测试；其余节点仅做安装验证 |
 | `HARDWARE` | `kunpeng920` | 报告 `hardware` 字段取值（KunpengTest schema 枚举：`kunpeng920` / `kunpeng950`），按 ARM 节点实际机型设置 |
 | `JOB_URL` | 空 | CI Job 地址，写入报告 `job_url` 字段，可选 |
-| `REPORT_SCHEMA_VERSION` | `0.6` | 报告 schema 版本。KunpengTest schema 升级（枚举加入 `conda`）后改为 `0.7` |
-| `REPORT_INSTALL_METHOD` | `conda` | 报告 `install_method` 字段取值。当前 schema 0.6 枚举不含 `conda`，校验会报错，待 schema 0.7 发布后恢复合法 |
+| `REPORT_SCHEMA_VERSION` | `0.6` | 报告 schema 版本，团队约定固定 `0.6` |
+| `REPORT_INSTALL_METHOD` | `conda` | 报告 `install_method` 字段取值，固定 `conda` |
 | `DRY_RUN` | 关闭 | 设为任意非空值（如 `1`）时：跳过 PR 评论与 dashboard 推送，改为在日志中打印 |
 
 ### 目标 OS
@@ -34,14 +34,21 @@
 测试 + 报告仅对 `config/os-versions.txt` 中声明的 OS 版本执行（每行一个，兼容 `openEuler-` 前缀写法），
 其余 OS 版本的新增条目仅做安装验证。该文件不是环境变量，由仓库维护者更新。
 
-## 测试报告推送（upstream-dashboard）
+## 测试报告推送（upstream-dashboard，默认开启）
+
+配置了 `DASHBOARD_REPO_URL` 与 `DASHBOARD_GIT_TOKEN` 后，测试完成即自动推送报告到
+upstream-dashboard 仓库的 `KunpengTest` 分支，目录为
+`openeuler-conda-test/<首字母>/<软件名>/<版本>/`（与 docker-images 的
+`openeuler-docker-images-test/` 相互独立）。任一变量缺失时告警跳过推送，不影响 CI 主流程。
+每个版本目录最多保留 3 份最新的未合入报告，`PR_merged=true` 的报告永不删除。
 
 | 变量 | 缺省值 | 说明 |
 | --- | --- | --- |
-| `DASHBOARD_PUSH_DISABLE` | `1`（禁用） | 设为 `0` 或空开启推送。推送目标为 upstream-dashboard 仓库 `KunpengTest` 分支，目录 `<首字母>/<软件名>/<版本>/` |
-| `DASHBOARD_REPO_SLUG` | 空 | 报告仓库 slug（如 `opensourceways/upstream-dashboard`）；为空则跳过推送 |
-| `DASHBOARD_BRANCH` | `KunpengTest` | 报告仓库的目标分支 |
-| `DASHBOARD_GIT_TOKEN` | 回退到 `GITCODE_API_TOKEN` | 报告仓库写权限 token，通过 Jenkins credential 注入 |
+| `DASHBOARD_REPO_URL` | 空 | 报告仓库完整 URL（`https://github.com/opensourceways/upstream-dashboard.git`）；为空则跳过推送 |
+| `DASHBOARD_BRANCH` | `KunpengTest` | 报告仓库目标分支 |
+| `DASHBOARD_RESULTS_DIR` | `openeuler-conda-test` | 仓库内报告根目录 |
+| `DASHBOARD_GIT_TOKEN` | 空 | https push token（GitHub PAT，需 upstream-dashboard 写权限），通过临时 credential helper 注入，不出现在 URL / 命令行 / .git/config |
+| `DASHBOARD_COMMIT_NAME` / `DASHBOARD_COMMIT_EMAIL` | `conda-ecopkgs-ci` / `ci@openeuler.org` | 报告 commit 的显式身份，CI 节点无需全局 git config |
 
 ## 凭证（原有）
 
@@ -50,6 +57,18 @@
 | `GITCODE_API_TOKEN` | GitCode API token，需具备读取 PR 信息/文件、发布 PR 评论权限 |
 
 ## Jenkins ARM job 参考配置（CI 实测期）
+
+Job 参数（String Parameter，与 docker-images 那条流水线同款风格）：
+
+| 参数名 | 默认值 | 描述 |
+| --- | --- | --- |
+| `DASHBOARD_REPO_URL` | `https://github.com/opensourceways/upstream-dashboard.git` | 测试报告存放仓库 |
+| `DASHBOARD_BRANCH` | `KunpengTest` | 测试报告存放仓库分支 |
+| `DASHBOARD_RESULTS_DIR` | `openeuler-conda-test` | 测试报告存放仓库分支目录 |
+
+Token 通过 Jenkins credential（Secret text）绑定注入 `DASHBOARD_GIT_TOKEN`。
+
+shell 步骤：
 
 ```bash
 rm -f check.sh
@@ -60,9 +79,6 @@ export CI_REPO_SLUG="unac/conda-ecopkgs"
 export CI_CODE_BRANCH="ci-test"
 export HARDWARE="kunpeng920"          # 按节点实际机型填
 export JOB_URL="${JOB_URL:-}"         # Jenkins 自动注入或留空
-# export DASHBOARD_PUSH_DISABLE=0     # 联调报告推送时开启
-# export DASHBOARD_REPO_SLUG="opensourceways/upstream-dashboard"
-
 ./check.sh
 ```
 

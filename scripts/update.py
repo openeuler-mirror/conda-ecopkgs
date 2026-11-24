@@ -3,10 +3,12 @@ import click
 import json
 import os
 import platform
+import re
 import requests
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import yaml
 from datetime import datetime, timezone
@@ -39,13 +41,16 @@ ORIGIN_CODE_URL = (
 # 测试与报告仅在指定架构的节点上执行（CI 在 x86/arm 各有一个 job，测试只跑 ARM）
 TEST_ARCH = os.environ.get("TEST_ARCH", "aarch64")
 
-# KunpengTest 报告相关（schema 0.6 枚举不含 conda，待上游 schema 升级后同步版本号）
+# 测试报告推送（upstream-dashboard 仓库 KunpengTest 分支，目录 openeuler-conda-test）
+# 报告仓库为完整 URL（如 https://github.com/opensourceways/upstream-dashboard.git）
+DASHBOARD_REPO_URL = os.environ.get("DASHBOARD_REPO_URL", "")
+DASHBOARD_BRANCH = os.environ.get("DASHBOARD_BRANCH", "KunpengTest")
+DASHBOARD_RESULTS_DIR = os.environ.get("DASHBOARD_RESULTS_DIR", "openeuler-conda-test")
+DASHBOARD_COMMIT_NAME = os.environ.get("DASHBOARD_COMMIT_NAME", "conda-ecopkgs-ci")
+DASHBOARD_COMMIT_EMAIL = os.environ.get("DASHBOARD_COMMIT_EMAIL", "ci@openeuler.org")
+# 报告 schema 版本与安装方式（团队约定固定 0.6 + conda）
 REPORT_SCHEMA_VERSION = os.environ.get("REPORT_SCHEMA_VERSION", "0.6")
 REPORT_INSTALL_METHOD = os.environ.get("REPORT_INSTALL_METHOD", "conda")
-REPORT_RESULTS_DIR = "conda-ecopkgs-test"
-DASHBOARD_REPO_SLUG = os.environ.get("DASHBOARD_REPO_SLUG", "")
-DASHBOARD_BRANCH = os.environ.get("DASHBOARD_BRANCH", "KunpengTest")
-DASHBOARD_PUSH_DISABLE = os.environ.get("DASHBOARD_PUSH_DISABLE", "1") not in ("", "0", "false")
 DRY_RUN = os.environ.get("DRY_RUN", "") not in ("", "0", "false")
 
 
@@ -506,12 +511,12 @@ def build_report(entry: dict, hardware: str,
 
 
 def report_relpath(report: dict, filename: str) -> str:
-    """KunpengTest 目录约定: <A-Z>/<软件名>/<软件版本>/<文件名>"""
+    """upstream-dashboard 目录约定: <报告根目录>/<A-Z>/<软件名>/<软件版本>/<文件名>"""
     software = report["software"]
     first = software[0].upper()
     shard = first if first.isalpha() else "0-9"
     return os.path.join(
-        REPORT_RESULTS_DIR, shard, software, report["version"], filename
+        DASHBOARD_RESULTS_DIR, shard, software, report["version"], filename
     )
 
 
@@ -535,63 +540,149 @@ def write_reports(reports: List[Tuple[dict, str, str]], out_root: str) -> None:
         click.echo(click.style(f"Report written: {full}", fg="green"))
 
 
+def _sanitize_repo(url: str) -> str:
+    """日志中隐藏仓库 URL 里可能嵌入的凭证"""
+    return re.sub(r"(https?://)[^/@]*@", r"\1***@", url)
+
+
+def _dashboard_git_args():
+    """
+    通过临时 credential helper 提供 token：token 只存在于环境变量中，
+    不会出现在 URL、命令行参数或 .git/config 里。用户名固定为
+    x-access-token，对 GitHub PAT（classic/fine-grained）及 GitCode 均有效。
+    """
+    token = os.environ.get("DASHBOARD_GIT_TOKEN", "").strip()
+    if not token:
+        return []
+    helper = (
+        '!f() { '
+        'echo "username=x-access-token"; '
+        'echo "password=${DASHBOARD_GIT_TOKEN}"; '
+        '}; f'
+    )
+    return ["-c", "credential.helper=", "-c", f"credential.helper={helper}"]
+
+
+def _dashboard_git(args, cwd=None):
+    env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
+    return subprocess.call(["git", *_dashboard_git_args(), *args], cwd=cwd, env=env)
+
+
+def _commit_and_push_dashboard(clone_dir: str, branch: str,
+                               message: str, attempts: int = 3) -> bool:
+    """
+    提交并推送报告。并发构建写同一报告仓库时 push 会被拒（non-fast-forward），
+    rebase 到远端分支后重试；报告路径互不重叠，rebase 极少冲突。
+    """
+    if subprocess.call(["git", "add", "-A"], cwd=clone_dir) != 0:
+        click.secho("Failed to stage dashboard report changes", fg="red")
+        return False
+    commit = [
+        "git",
+        "-c", f"user.name={DASHBOARD_COMMIT_NAME}",
+        "-c", f"user.email={DASHBOARD_COMMIT_EMAIL}",
+        "commit", "-m", message,
+    ]
+    if subprocess.call(commit, cwd=clone_dir) != 0:
+        click.secho("Failed to commit dashboard report changes", fg="red")
+        return False
+    for attempt in range(1, attempts + 1):
+        if _dashboard_git(["push", "origin", branch], cwd=clone_dir) == 0:
+            return True
+        click.secho(
+            f"Dashboard push attempt {attempt}/{attempts} rejected, rebase and retry.",
+            fg="yellow"
+        )
+        if _dashboard_git(["pull", "--rebase", "origin", branch], cwd=clone_dir) != 0:
+            click.secho("Failed to rebase onto remote branch, abort.", fg="red")
+            subprocess.call(["git", "rebase", "--abort"], cwd=clone_dir)
+            return False
+    return False
+
+
+def _prune_version_dir(version_dir: str, keep: int = 3) -> List[str]:
+    """
+    每个版本目录最多保留 keep 份最新的未合入报告（按文件名时间戳排序）；
+    PR_merged=true 的报告永不删除（保护 docker-images 等其他生产方的合入数据）。
+    """
+    files = sorted(
+        (f for f in os.listdir(version_dir) if f.endswith(".json")),
+        reverse=True,
+    )
+    removed = []
+    non_merged = []
+    for name in files:
+        merged = False
+        try:
+            with open(os.path.join(version_dir, name), "r", encoding="utf-8") as f:
+                merged = bool(json.load(f).get("PR_merged"))
+        except (OSError, ValueError):
+            pass
+        if not merged:
+            non_merged.append(name)
+    while len(non_merged) > keep:
+        old = non_merged.pop()
+        os.remove(os.path.join(version_dir, old))
+        removed.append(old)
+    return removed
+
+
 def push_dashboard(reports: List[Tuple[dict, str, str]]) -> bool:
-    """推送报告到 upstream-dashboard 仓库的 KunpengTest 分支"""
+    """
+    推送报告到 upstream-dashboard 仓库的 KunpengTest 分支（默认开启）。
+    DASHBOARD_REPO_URL / DASHBOARD_GIT_TOKEN 任一缺失时告警跳过，
+    不影响 CI 主流程。
+    """
     if not reports:
         return True
     if DRY_RUN:
         click.secho("DRY_RUN: skip dashboard push", fg="yellow")
         return True
-    if DASHBOARD_PUSH_DISABLE:
+    repo = DASHBOARD_REPO_URL.strip()
+    if not repo:
+        click.secho("DASHBOARD_REPO_URL not set, skip dashboard push", fg="yellow")
+        return True
+    if not os.environ.get("DASHBOARD_GIT_TOKEN", "").strip():
+        click.secho("DASHBOARD_GIT_TOKEN not set, skip dashboard push", fg="yellow")
+        return True
+
+    clone_dir = tempfile.mkdtemp(prefix="dashboard-push-")
+    ok = False
+    try:
         click.secho(
-            f"DASHBOARD_PUSH_DISABLE set, reports kept locally only "
-            f"({len(reports)} reports)", fg="yellow"
+            f"Cloning dashboard repo: {_sanitize_repo(repo)} (branch={DASHBOARD_BRANCH})",
+            fg="blue"
         )
-        return True
-    if not DASHBOARD_REPO_SLUG:
-        click.secho("DASHBOARD_REPO_SLUG not set, skip dashboard push", fg="yellow")
-        return True
+        if _dashboard_git(
+            ["clone", "--depth", "1", "-b", DASHBOARD_BRANCH, repo, clone_dir]
+        ) != 0:
+            click.secho("Failed to clone dashboard repo", fg="red")
+            return False
 
-    token = os.environ.get("DASHBOARD_GIT_TOKEN") or os.environ.get("GITCODE_API_TOKEN")
-    if not token:
-        click.secho("No dashboard token, skip dashboard push", fg="yellow")
-        return True
+        version_dirs = set()
+        for report, filename, relpath in reports:
+            dest = os.path.join(clone_dir, relpath)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, "w", encoding="utf-8") as f:
+                json.dump(report, f, ensure_ascii=False, indent=2)
+            version_dirs.add(os.path.dirname(dest))
 
-    clone_dir = "/tmp/dashboard-push"
-    if os.path.exists(clone_dir):
-        shutil.rmtree(clone_dir)
-    url = f"https://oauth2:{token}@gitcode.com/{DASHBOARD_REPO_SLUG}.git"
-    cmd = ["git", "clone", "--depth", "1", "-b", DASHBOARD_BRANCH, url, clone_dir]
-    click.secho(f"Cloning dashboard repo {DASHBOARD_REPO_SLUG}", fg="blue")
-    if subprocess.call(cmd) != 0:
-        click.secho("Failed to clone dashboard repo", fg="red")
-        return False
+        removed = []
+        for vdir in version_dirs:
+            removed.extend(_prune_version_dir(vdir))
 
-    for report, filename, relpath in reports:
-        dest = os.path.join(clone_dir, relpath)
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
-        with open(dest, "w", encoding="utf-8") as f:
-            json.dump(report, f, ensure_ascii=False, indent=2)
-        _apply_retention(os.path.dirname(dest))
-
-    subprocess.call(["git", "-C", clone_dir, "add", "."])
-    commit_msg = f"conda-ecopkgs: add {len(reports)} test report(s)"
-    subprocess.call(["git", "-C", clone_dir, "commit", "-m", commit_msg])
-    if subprocess.call(["git", "-C", clone_dir, "push", "origin", DASHBOARD_BRANCH]) != 0:
-        click.secho("Failed to push dashboard repo", fg="red")
-        return False
-    click.secho(f"Pushed {len(reports)} report(s) to dashboard", fg="green")
-    return True
-
-
-def _apply_retention(version_dir: str, keep: int = 3) -> None:
-    """每个版本目录最多保留 keep 份最新报告（README 约定）"""
-    files = sorted(
-        (f for f in os.listdir(version_dir) if f.endswith(".json")),
-        reverse=True,
-    )
-    for old in files[keep:]:
-        os.remove(os.path.join(version_dir, old))
+        message = f"conda-ecopkgs: add {len(reports)} test report(s)"
+        ok = _commit_and_push_dashboard(clone_dir, DASHBOARD_BRANCH, message)
+    finally:
+        shutil.rmtree(clone_dir, ignore_errors=True)
+    if ok:
+        extra = f", pruned {len(removed)} old report(s)" if removed else ""
+        click.secho(
+            f"Pushed {len(reports)} report(s) to dashboard{extra}", fg="green"
+        )
+    else:
+        click.secho("Failed to push dashboard reports", fg="red")
+    return ok
 
 
 # ---------------------------------------------------------------------------

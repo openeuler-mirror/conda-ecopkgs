@@ -39,7 +39,7 @@ cases:
 - 包目录 `tests/` 下的辅助脚本/数据会挂载到容器 `/tests`，用例可通过相对路径调用
 - 用例可通过环境变量感知上下文：`PKG_VERSION`（包版本）、`OS_VERSION`（openEuler版本）、`ARCH`（架构）
 - 用例结果映射：退出码 0 → `pass`，非 0 → `fail`，超时 → `error`，声明跳过 → `skip`/`blocked`
-- 测试报告按 KunpengTest schema（v0.6，`install_method: conda`）生成，推送至 upstream-dashboard 仓库 `KunpengTest` 分支，同时摘要评论到 PR
+- 测试报告按 KunpengTest schema（v0.6，`install_method: conda`）生成，推送至 upstream-dashboard 仓库 `KunpengTest` 分支的 `openeuler-conda-test/` 目录，同时摘要评论到 PR
 
 ## 本地验证（无需PR）
 
