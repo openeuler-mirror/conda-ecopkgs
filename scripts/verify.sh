@@ -5,12 +5,15 @@ PACKAGE=""
 CHANNEL=""
 VERSION=""
 DEPENDENCY_CHANNELS=()
+TEST_SPEC=""
+RESULTS_DIR=""
 
 show_help() {
-  echo "Usage: $0 -p <package> -c <primary_channel> [-d <dependency_channel>...] [-v <version>]"
+  echo "Usage: $0 -p <package> -c <primary_channel> [-d <dependency_channel>...] [-v <version>] [-t <test-spec.json>] [-r <results_dir>]"
   echo "Example:"
   echo "  $0 -p numpy -c conda-forge -d defaults -v 1.21.0"
   echo "  $0 -p pandas -c my-channel -d conda-forge -d defaults"
+  echo "  $0 -p bcrypt -c conda-forge -v 4.3.0 -t /tmp/test-spec.json -r /results"
   exit 1
 }
 
@@ -49,6 +52,24 @@ while [[ $# -gt 0 ]]; do
         DEPENDENCY_CHANNELS+=("$1")
         shift
       done
+      ;;
+
+-t)
+      [[ -z "$2" ]] && {
+        echo "Error: -t requires a test spec json path" >&2
+        show_help
+      }
+      TEST_SPEC="$2"
+      shift 2
+      ;;
+
+-r)
+      [[ -z "$2" ]] && {
+        echo "Error: -r requires a results directory path" >&2
+        show_help
+      }
+      RESULTS_DIR="$2"
+      shift 2
       ;;
 
     -h|--help)
@@ -107,4 +128,21 @@ if [[ -z "$INSTALLED_VERSION" ]]; then
 else
   echo "Successfully installed ${PACKAGE} version: ${INSTALLED_VERSION}"
   echo "Primary channel: $CHANNEL"
+fi
+
+# 安装成功后执行测试用例（由 update.py 生成 test spec 并挂载）
+TEST_RUNNER="${TEST_RUNNER:-/tmp/test-runner.py}"
+if [[ -n "$TEST_SPEC" ]]; then
+  if [[ ! -f "$TEST_SPEC" ]]; then
+    echo "WARN: test spec not found: ${TEST_SPEC}, skipping tests"
+  elif [[ ! -f "$TEST_RUNNER" ]]; then
+    echo "WARN: test runner not found: ${TEST_RUNNER}, skipping tests"
+  else
+    echo "Running test cases from ${TEST_SPEC}"
+    mkdir -p "${RESULTS_DIR:-/results}"
+    python "$TEST_RUNNER" "$TEST_SPEC" "${RESULTS_DIR:-/results}" || {
+      echo "ERROR: test cases failed for ${PACKAGE}!" >&2
+      exit 1
+    }
+  fi
 fi
