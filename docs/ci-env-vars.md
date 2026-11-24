@@ -15,8 +15,12 @@
 
 | 变量 | 缺省值 | 说明 |
 | --- | --- | --- |
-| `CI_REPO_SLUG` | `openeuler/conda-ecopkgs` | 代码仓库 slug，同时决定：check.sh clone 的仓库、PR API 地址（`https://api.gitcode.com/api/v5/repos/{slug}/pulls`）、origin 对比基准 |
-| `CI_CODE_BRANCH` | 仓库默认分支 | check.sh clone 时使用的分支。测试期指向携带新脚本的 `ci-test` 分支；上游环境无需设置 |
+| `CI_REPO_SLUG` | `openeuler/conda-ecopkgs` | 被测仓库 slug，决定：PR API 地址（`https://api.gitcode.com/api/v5/repos/{slug}/pulls`）、origin 对比基准、check.sh clone 的仓库（见下）。测试 PR 提在上游时无需设置 |
+| `CI_CODE_BRANCH` | 仓库默认分支 | check.sh clone 时使用的分支 |
+
+> 实测期与 docker-images 流水线同款做法：`ci-test` 分支的 check.sh 内部已写死克隆
+> fork 的 `ci-test` 分支（代码来自 fork、被测对象保持上游）。该写死仅存在于
+> `ci-test` 分支用于实测，通用版（提上游的 `pr/add-tests`）仍按上表变量工作。
 
 ## 测试与报告行为
 
@@ -36,7 +40,7 @@
 
 ## 测试报告推送（upstream-dashboard，默认开启）
 
-配置了 `DASHBOARD_REPO_URL` 与 `DASHBOARD_GIT_TOKEN` 后，测试完成即自动推送报告到
+配置了 `DASHBOARD_GIT_TOKEN` 后（报告仓库 URL 已内置缺省值），测试完成即自动推送报告到
 upstream-dashboard 仓库的 `KunpengTest` 分支，目录为
 `openeuler-conda-test/<首字母>/<软件名>/<版本>/`（与 docker-images 的
 `openeuler-docker-images-test/` 相互独立）。任一变量缺失时告警跳过推送，不影响 CI 主流程。
@@ -44,7 +48,7 @@ upstream-dashboard 仓库的 `KunpengTest` 分支，目录为
 
 | 变量 | 缺省值 | 说明 |
 | --- | --- | --- |
-| `DASHBOARD_REPO_URL` | 空 | 报告仓库完整 URL（`https://github.com/opensourceways/upstream-dashboard.git`）；为空则跳过推送 |
+| `DASHBOARD_REPO_URL` | `https://github.com/opensourceways/upstream-dashboard.git` | 报告仓库完整 URL，缺省即官方看板仓库，一般无需设置 |
 | `DASHBOARD_BRANCH` | `KunpengTest` | 报告仓库目标分支 |
 | `DASHBOARD_RESULTS_DIR` | `openeuler-conda-test` | 仓库内报告根目录 |
 | `DASHBOARD_GIT_TOKEN` | 空 | https push token（GitHub PAT，需 upstream-dashboard 写权限），通过临时 credential helper 注入，不出现在 URL / 命令行 / .git/config |
@@ -58,15 +62,8 @@ upstream-dashboard 仓库的 `KunpengTest` 分支，目录为
 
 ## Jenkins ARM job 参考配置（CI 实测期）
 
-Job 参数（String Parameter，与 docker-images 那条流水线同款风格）：
-
-| 参数名 | 默认值 | 描述 |
-| --- | --- | --- |
-| `DASHBOARD_REPO_URL` | `https://github.com/opensourceways/upstream-dashboard.git` | 测试报告存放仓库 |
-| `DASHBOARD_BRANCH` | `KunpengTest` | 测试报告存放仓库分支 |
-| `DASHBOARD_RESULTS_DIR` | `openeuler-conda-test` | 测试报告存放仓库分支目录 |
-
-Token 通过 Jenkins credential（Secret text）绑定注入 `DASHBOARD_GIT_TOKEN`。
+实测期只需改 job 的 shell：check.sh 从 fork 的 `ci-test` 分支取（该版本内部写死克隆
+fork 的 `ci-test` 分支作为流水线代码；PR API / origin 保持缺省指向上游）。
 
 shell 步骤：
 
@@ -75,12 +72,19 @@ rm -f check.sh
 curl -fSL -o check.sh https://raw.gitcode.com/unac/conda-ecopkgs/raw/ci-test/scripts/check.sh
 chmod +x check.sh
 
-export CI_REPO_SLUG="unac/conda-ecopkgs"
-export CI_CODE_BRANCH="ci-test"
 export HARDWARE="kunpeng920"          # 按节点实际机型填
-export JOB_URL="${JOB_URL:-}"         # Jenkins 自动注入或留空
 ./check.sh
 ```
 
-回退上游配置：去掉 `CI_REPO_SLUG` / `CI_CODE_BRANCH` 两个环境变量、raw URL 改回
-`openeuler/conda-ecopkgs/raw/master`，即可恢复原有行为。
+Token 通过 Jenkins credential（Secret text）注入：
+
+| 变量 | 说明 |
+| --- | --- |
+| `DASHBOARD_GIT_TOKEN` | GitHub PAT，需 upstream-dashboard 仓库写权限（推送测试报告） |
+| `GITCODE_API_TOKEN` | GitCode token（原有 credential），需读取上游 PR 信息/文件 + 发布 PR 评论权限 |
+
+`DASHBOARD_REPO_URL` / `DASHBOARD_BRANCH` / `DASHBOARD_RESULTS_DIR` 均已内置缺省值，
+无需在 job 中配置；`prid` / `repo` / `branch` 由 PR 触发器自动注入。
+
+实测通过、PR 合入后回退上游配置：raw URL 改回 `openeuler/conda-ecopkgs/raw/master`，
+`HARDWARE` 保留（按节点机型），其余不变。

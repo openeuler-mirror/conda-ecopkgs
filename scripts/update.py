@@ -42,8 +42,11 @@ ORIGIN_CODE_URL = (
 TEST_ARCH = os.environ.get("TEST_ARCH", "aarch64")
 
 # 测试报告推送（upstream-dashboard 仓库 KunpengTest 分支，目录 openeuler-conda-test）
-# 报告仓库为完整 URL（如 https://github.com/opensourceways/upstream-dashboard.git）
-DASHBOARD_REPO_URL = os.environ.get("DASHBOARD_REPO_URL", "")
+# 报告仓库为完整 URL，缺省即官方看板仓库，Jenkins 仅需注入写权限 token
+DASHBOARD_REPO_URL = os.environ.get(
+    "DASHBOARD_REPO_URL",
+    "https://github.com/opensourceways/upstream-dashboard.git"
+)
 DASHBOARD_BRANCH = os.environ.get("DASHBOARD_BRANCH", "KunpengTest")
 DASHBOARD_RESULTS_DIR = os.environ.get("DASHBOARD_RESULTS_DIR", "openeuler-conda-test")
 DASHBOARD_COMMIT_NAME = os.environ.get("DASHBOARD_COMMIT_NAME", "conda-ecopkgs-ci")
