@@ -493,9 +493,9 @@ def build_report(entry: dict, hardware: str,
         "test_time": entry["test_time"],
         "finished_at": entry["finished_at"],
         "run_status": "completed",
-        # 单阶段流程：check 阶段 PR 尚未合入，PR_merged 固定 false（与 docker-images
-        # check 阶段一致）；display 与 PR_merged 解耦，CI 通过即在看板展示
-        "display": passed,
+        # check 阶段 PR 尚未合入：PR_merged / display 固定 false；
+        # 由独立的合入检测程序在实际合入后更新 PR_merged=true、display=true
+        "display": False,
         "CI_passed": passed,
         "PR_merged": False,
         "upstream_supported": False,
