@@ -493,11 +493,12 @@ def build_report(entry: dict, hardware: str,
         "test_time": entry["test_time"],
         "finished_at": entry["finished_at"],
         "run_status": "completed",
-        # 约定 CI 通过即为合入：通过则直接展示
+        # 单阶段流程：check 阶段 PR 尚未合入，PR_merged 固定 false（与 docker-images
+        # check 阶段一致）；display 与 PR_merged 解耦，CI 通过即在看板展示
         "display": passed,
         "CI_passed": passed,
-        "PR_merged": passed,
-        "upstream_supported": True,
+        "PR_merged": False,
+        "upstream_supported": False,
         "unsupported_reasons": [],
         "test_cases": entry["tests"],
         "install_method": REPORT_INSTALL_METHOD,
