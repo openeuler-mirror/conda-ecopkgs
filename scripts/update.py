@@ -57,21 +57,26 @@ REPORT_INSTALL_METHOD = os.environ.get("REPORT_INSTALL_METHOD", "conda")
 DRY_RUN = os.environ.get("DRY_RUN", "") not in ("", "0", "false")
 
 
-class NoFloatLoader(yaml.SafeLoader):
+class NoNumericLoader(yaml.SafeLoader):
     pass
 
 
-# Remove recognition of float
-for ch in list(NoFloatLoader.yaml_implicit_resolvers):
+# Remove recognition of int/float so version scalars keep their original
+# text as str (e.g. `201008` / `1.25` in supported-versions.yml must not
+# become int/float objects, or downstream str-joins will crash)
+for ch in list(NoNumericLoader.yaml_implicit_resolvers):
     resolvers = [
         (tag, regexp)
-        for tag, regexp in NoFloatLoader.yaml_implicit_resolvers[ch]
-        if tag != 'tag:yaml.org,2002:float'
+        for tag, regexp in NoNumericLoader.yaml_implicit_resolvers[ch]
+        if tag not in (
+            "tag:yaml.org,2002:int",
+            "tag:yaml.org,2002:float",
+        )
     ]
     if resolvers:
-        NoFloatLoader.yaml_implicit_resolvers[ch] = resolvers
+        NoNumericLoader.yaml_implicit_resolvers[ch] = resolvers
     else:
-        del NoFloatLoader.yaml_implicit_resolvers[ch]
+        del NoNumericLoader.yaml_implicit_resolvers[ch]
 
 
 # transform openEuler version into specifical format
@@ -260,7 +265,7 @@ def parse_yaml_data(yaml_file: str) -> Dict[str, Any]:
         return {}
 
     with open(yaml_file, 'r') as f:
-        data = yaml.load(f, Loader=NoFloatLoader)
+        data = yaml.load(f, Loader=NoNumericLoader)
     return data
 
 
@@ -397,7 +402,7 @@ def verify_package(
         "sudo", "docker", "run", "--rm", "--privileged",
         "-v", f"{verify_script}:{verify_script}"
     ]
-    args = ["-p", package, "-c", channel, "-v", package_version]
+    args = ["-p", package, "-c", channel, "-v", str(package_version)]
 
     if with_tests:
         runner_path = os.path.join(results_dir, "test-runner.py")
@@ -753,7 +758,11 @@ def _comment_html(results: List[dict]) -> str:
                 f":x: {r['package']} - {t['name']} ({t.get('result')})</summary>"
                 f"<pre>{msg}</pre></details></td></tr>"
             )
-    return f"<p>conda-ecopkgs CI verification results (aarch64):</p><table>{head}{body}</table>"
+    node_arch = platform.machine()
+    return (
+        f"<p>conda-ecopkgs CI verification results ({node_arch}):</p>"
+        f"<table>{head}{body}</table>"
+    )
 
 
 # ---------------------------------------------------------------------------
