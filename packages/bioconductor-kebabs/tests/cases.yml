@@ -1,0 +1,12 @@
+# 由 openEuler Docker 自动升级流水线生成
+cases:
+- name: installed-version
+  description: 已安装的 bioconductor-kebabs 版本必须等于申报版本
+  category: functional
+  cmd: ls "$CONDA_PREFIX/conda-meta/bioconductor-kebabs-${PKG_VERSION}-"*.json
+  timeout: 60
+- name: package-integrity
+  description: conda 元数据登记的包内文件必须完整落盘
+  category: functional
+  cmd: python -c "import glob,json,os,sys; p=os.environ['CONDA_PREFIX']; m=glob.glob(os.path.join(p,'conda-meta','bioconductor-kebabs-'+os.environ['PKG_VERSION']+'-*.json')); f=json.load(open(m[0]))['files']; missing=[x for x in f if not os.path.lexists(os.path.join(p,x))]; print('checked',len(f),'files; missing',len(missing)); [print('missing',x) for x in missing[:20]]; sys.exit(1 if missing else 0)"
+  timeout: 120
