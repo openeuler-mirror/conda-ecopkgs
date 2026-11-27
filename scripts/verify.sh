@@ -140,7 +140,9 @@ if [[ -n "$TEST_SPEC" ]]; then
   else
     echo "Running test cases from ${TEST_SPEC}"
     mkdir -p "${RESULTS_DIR:-/results}"
-    python "$TEST_RUNNER" "$TEST_SPEC" "${RESULTS_DIR:-/results}" || {
+    # PACKAGE 环境可能不含 python（如 wannier90），回退到镜像自带的 python3
+    PYTHON_BIN="$(command -v python || command -v python3 || echo "${CONDA_PYTHON_EXE:-python3}")"
+    "$PYTHON_BIN" "$TEST_RUNNER" "$TEST_SPEC" "${RESULTS_DIR:-/results}" || {
       echo "ERROR: test cases failed for ${PACKAGE}!" >&2
       exit 1
     }
