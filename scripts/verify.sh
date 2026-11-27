@@ -140,7 +140,10 @@ if [[ -n "$TEST_SPEC" ]]; then
   else
     echo "Running test cases from ${TEST_SPEC}"
     mkdir -p "${RESULTS_DIR:-/results}"
-    python "$TEST_RUNNER" "$TEST_SPEC" "${RESULTS_DIR:-/results}" || {
+    # 新建的 conda 环境不一定带 python（例如 wannier90 依赖闭包里没有它），
+    # 这里优先用 conda 基础解释器，再回退到系统 python3/python。
+    PYTHON_BIN="${CONDA_PYTHON_EXE:-$(command -v python3 || command -v python)}"
+    "$PYTHON_BIN" "$TEST_RUNNER" "$TEST_SPEC" "${RESULTS_DIR:-/results}" || {
       echo "ERROR: test cases failed for ${PACKAGE}!" >&2
       exit 1
     }
