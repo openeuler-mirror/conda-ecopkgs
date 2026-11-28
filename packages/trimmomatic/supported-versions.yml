@@ -12,3 +12,6 @@
         - noarch
     0.40:
         - noarch
+24.03-LTS-SP4:
+    0.41:
+        - noarch

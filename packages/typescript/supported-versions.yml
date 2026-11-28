@@ -14,3 +14,7 @@
         - noarch
     6.0.2:
         - noarch
+24.03-LTS-SP4:
+    7.0.2:
+        - aarch64
+        - x86_64
