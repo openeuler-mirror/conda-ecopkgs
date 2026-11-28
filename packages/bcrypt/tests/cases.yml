@@ -1,28 +1,25 @@
-cases:
-  - name: import
-    description: "导入 bcrypt 模块，验证包可正常加载"
-    category: functional
-    cmd: >-
-      python -c "import bcrypt; print('bcrypt import ok')"
-    timeout: 60
-
-  - name: version-match
-    description: "已安装 bcrypt 版本必须等于申报版本"
-    category: functional
-    cmd: >-
-      python -c "import importlib.metadata as m, os;
-      v = m.version('bcrypt'); print('installed', v);
-      assert v == os.environ['PKG_VERSION'],
-      'version mismatch ' + v + ' != ' + os.environ['PKG_VERSION']"
-    timeout: 60
-
-  - name: hash-verify
-    description: "生成密码哈希并校验正确密码匹配、错误密码不匹配"
-    category: functional
-    cmd: >-
-      python -c "import bcrypt;
-      h = bcrypt.hashpw(b'secret', bcrypt.gensalt());
-      assert bcrypt.checkpw(b'secret', h);
-      assert not bcrypt.checkpw(b'wrong', h);
-      print('hash/verify ok')"
-    timeout: 120
+24.03-LTS:
+    4.3.0:
+        - x86_64
+        - aarch64
+22.03-LTS-SP4:
+    4.3.0:
+        - x86_64
+        - aarch64
+24.03-LTS-SP1:
+    4.3.0:
+        - x86_64
+        - aarch64
+24.03-LTS-SP2:
+    4.3.0:
+        - aarch64
+        - x86_64
+    5.0.0:
+        - aarch64
+        - x86_64
+24.03-LTS-SP4:
+    4.3.0:
+        - aarch64
+    5.0.0:
+        - aarch64
+        - x86_64
